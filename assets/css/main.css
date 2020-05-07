@@ -42,6 +42,94 @@ h6 {}
 
 /* Footer */
 
+footer {
+    background-color: var(--dark-grey);
+    padding: 3rem 0 1rem 0;
+    color: var(--medium-grey);
+}
+
+.footer-text h4 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--off-white);
+}
+
+.footer-text p {
+    font-size: 300;
+    font-size: 0.8rem;
+}
+
+.footer-text span {
+    font-size: 300;
+    font-size: 0.7rem;
+    color: var(--medium-grey);
+    margin: 0;
+    display: block;
+}
+
+.footer-text span a {
+    text-decoration: none;
+    color: var(--light-grey);
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+}
+
+.footer-text span a:hover {
+    color: var(--light-blue);
+}
+
+footer h6 {
+    color: var(--off-white);
+    font-family: "Oswald";
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    font-size: 1rem;
+}
+
+footer ul {
+    padding: 0;
+    padding-top: 1rem;
+    list-style: none;
+}
+
+footer li {
+    font-weight: 400;
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+}
+
+footer a {
+    color: var(--medium-grey);
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: var(--light-blue);
+}
+
+.footer-contact .divider {
+    width: 80%;
+    height: 1px;
+    background-color: var(--medium-grey);
+}
+
+.footer-social {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.footer-social a {
+    margin-right: 0.75rem;
+}
 
 /* Scrollbars */
 
@@ -118,6 +206,57 @@ h6 {}
     padding: 1.5rem;
     color: var(--medium-blue);
 }
+
+#shop-settings-sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+#shop-settings-sort p {
+    margin: 0;
+}
+
+#shop-settings-sort-dropdown {
+    background-color: white;
+    position: absolute;
+    margin-top: 4rem;
+    z-index: 10;
+    height: 0;
+    overflow: hidden;
+    transition: 0.4s ease;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -ms-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
+}
+
+#shop-settings-sort-dropdown ul {
+    padding: 1rem;
+    list-style: none;
+}
+
+#shop-settings-sort-dropdown ul li {
+    margin: 0.5rem 0;
+    cursor: pointer;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    font-size: 0.9rem;
+}
+
+#shop-settings-sort-dropdown ul li:hover {
+    color: var(--light-blue);
+}
+
+#shop-settings-sort-dropdown.open {
+    height: auto;
+    border-top: var(--shop-border);
+}
+
 
 /* Filters */
 .shop-filter {
@@ -199,14 +338,16 @@ h6 {}
     -moz-border-radius: 1px;
     -ms-border-radius: 1px;
     -o-border-radius: 1px;
+    cursor: pointer;
 }
 
 
 .card-filter-size .custom-check i {
     font-size: 0.6rem;
     padding: 0.2rem;
-    color: var(--medium-blue);
+    color: var(--light-blue);
     position: absolute;
+    display: none;
 }
 
 
@@ -221,7 +362,7 @@ h6 {}
 }
 
 .product-name {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
     font-family: "Oswald";
@@ -230,7 +371,7 @@ h6 {}
 .product-price {
     color: var(--light-blue);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-bottom: 0;
 }
 
