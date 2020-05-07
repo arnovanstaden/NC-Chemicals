@@ -1,0 +1,242 @@
+/* FONTS */
+
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,500,600,700|Poppins:300,400,500,600,700&display=swap');
+
+/* VARIABLES */
+
+:root {
+    --light-blue: rgba(88, 201, 233, 1);
+    --medium-blue: rgba(56, 83, 216, 1);
+    --dark-blue: rgba(5, 11, 22, 1);
+
+    --light-grey: rgb(225, 225, 225);
+    --medium-grey: rgb(150, 150, 150);
+    --dark-grey: rgba(35, 35, 35, 1);
+
+    --off-white: rgba(247, 247, 247, 1);
+    --shop-border: 0.75px solid var(--light-grey);
+}
+
+/* GENERAL */
+
+body,
+html {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+    color: var(--dark-blue);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {}
+
+/* Buttons */
+
+
+/* Navigation */
+
+/* Footer */
+
+
+/* Scrollbars */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--dark-blue);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--light-blue);
+}
+
+
+
+
+/* -------------------------------------- */
+
+/* PAGES */
+
+/* -------------------------------------- */
+
+/* HOME PAGE */
+
+
+
+
+
+/* -------------------------------------- */
+
+
+/* SHOP PAGE */
+
+/* General */
+
+.section-shop {
+    margin-top: 5rem;
+    padding-bottom: 2rem;
+}
+
+.shop-container {
+    -webkit-box-shadow: 2px 0px 30px 15px rgba(35, 35, 35, 0.15);
+    -moz-box-shadow: 2px 0px 30px 15px rgba(35, 35, 35, 0.15);
+    box-shadow: 2px 0px 30px 15px rgba(35, 35, 35, 0.15);
+}
+
+/* Settings */
+.shop-settings>div>div {
+    border-bottom: var(--shop-border);
+    border-right: var(--shop-border);
+    display: flex;
+    align-items: center;
+}
+
+#shop-settings-filter {
+    justify-content: space-between;
+    padding-right: 0;
+}
+
+#shop-settings-filter h5 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+#shop-settings-filter i {
+    border-left: var(--shop-border);
+    cursor: pointer;
+    padding: 1.5rem;
+    color: var(--medium-blue);
+}
+
+/* Filters */
+.shop-filter {
+    border-right: var(--shop-border);
+    padding: 0;
+}
+
+
+
+.card {
+    border: none;
+    border-bottom: 1px solid var(--light-grey) !important;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+.card-header h6 {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.card-header h6 i {
+    margin-right: 10px;
+}
+
+.card-header>i {
+    font-size: 0.9rem;
+    color: var(--medium-grey);
+    cursor: pointer;
+}
+
+.card-filter-categories ul,
+.card-filter-size ul {
+    padding: 0;
+    list-style: none;
+    padding-left: 1.5rem;
+}
+
+.card-filter-categories li,
+.card-filter-size li {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+    align-items: center;
+}
+
+.card-filter-categories li p,
+.card-filter-size p {
+    margin: 0;
+}
+
+.card-filter-categories li span,
+.card-filter-size li span {
+    color: var(--medium-grey);
+    font-size: 0.8rem;
+}
+
+.card-filter-size .custom-check {
+    border: 1px solid var(--light-grey);
+    width: 1.1rem;
+    height: 1.1rem;
+    position: relative;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    -ms-border-radius: 1px;
+    -o-border-radius: 1px;
+}
+
+
+.card-filter-size .custom-check i {
+    font-size: 0.6rem;
+    padding: 0.2rem;
+    color: var(--medium-blue);
+    position: absolute;
+}
+
+
+
+
+
+/* Product */
+.product {
+    border-bottom: var(--shop-border);
+    border-right: var(--shop-border);
+    padding: 1rem;
+}
+
+.product-name {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    font-family: "Oswald";
+}
+
+.product-price {
+    color: var(--light-blue);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.product-image {
+    display: block;
+    width: 85%;
+    margin: 0 auto;
+    padding-bottom: 0.5rem;
+}
