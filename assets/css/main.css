@@ -7,7 +7,7 @@
 :root {
     --light-blue: rgba(88, 201, 233, 1);
     --medium-blue: rgba(56, 83, 216, 1);
-    --dark-blue: rgba(5, 11, 22, 1);
+    --dark-blue: rgb(5, 20, 48);
 
     --light-grey: rgb(225, 225, 225);
     --medium-grey: rgb(150, 150, 150);
@@ -320,6 +320,17 @@ footer a:hover {
 .card-filter-categories li p,
 .card-filter-size p {
     margin: 0;
+    cursor: pointer;
+    transition: 0.3a ease;
+    -webkit-transition: 0.3a ease;
+    -moz-transition: 0.3a ease;
+    -ms-transition: 0.3a ease;
+    -o-transition: 0.3a ease;
+}
+
+.card-filter-categories li p:hover,
+.card-filter-size p:hover {
+    color: var(--light-blue);
 }
 
 .card-filter-categories li span,
@@ -355,29 +366,224 @@ footer a:hover {
 
 
 /* Product */
-.product {
+.shop-product {
     border-bottom: var(--shop-border);
     border-right: var(--shop-border);
     padding: 1rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
 }
 
-.product-name {
+.shop-product:hover {
+    /* border: 1px solid vqar(--light-blue); */
+}
+
+.shop-product-name {
     font-size: 1.1rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
     font-family: "Oswald";
 }
 
-.product-price {
+.shop-product-price {
     color: var(--light-blue);
     font-weight: 500;
     font-size: 0.9rem;
     margin-bottom: 0;
 }
 
-.product-image {
+.shop-product-image {
     display: block;
     width: 85%;
     margin: 0 auto;
     padding-bottom: 0.5rem;
+    transition: 0.4s ease;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -ms-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
+}
+
+.shop-product:hover .shop-product-image {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+
+
+
+
+
+
+/* ----------------------------------- */
+
+
+/* PRODUCT PAGE */
+
+/* General */
+
+.section-product {
+    margin-top: 5rem;
+    padding-bottom: 2rem;
+}
+
+.product-container {
+    -webkit-box-shadow: 2px 0px 30px 15px rgba(35, 35, 35, 0.15);
+    -moz-box-shadow: 2px 0px 30px 15px rgba(35, 35, 35, 0.15);
+    box-shadow: 2px 0px 30px 15px rgba(35, 35, 35, 0.15);
+}
+
+/* Product */
+
+.product-info {
+    padding: 4rem 2rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-image img {
+    height: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
+.product-category {
+    text-transform: uppercase;
+    color: var(--light-blue);
+    margin: 0.5rem 0;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+}
+
+.product-name {
+    font-family: "Oswald";
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.product-label {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    letter-spacing: 1px;
+}
+
+.product-description {
+    color: var(--medium-grey);
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.product-sizes span {
+    color: var(--medium-grey);
+    margin-right: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+}
+
+.product-sizes span:hover {
+    color: var(--dark-blue);
+}
+
+.product-sizes span.active {
+    color: var(--light-blue);
+}
+
+.product-price {
+    margin: 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    display: inline-block;
+    border-left: 3px solid var(--light-blue);
+    padding-left: 0.5rem;
+}
+
+.product-add-cart {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.product-quant {
+    border: 1px solid var(--medium-grey);
+    border-radius: 1.5rem;
+    -webkit-border-radius: 1.5rem;
+    -moz-border-radius: 1.5rem;
+    -ms-border-radius: 1.5rem;
+    -o-border-radius: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.product-quant span {
+    margin: 0 0.5rem;
+    width: 2rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-block;
+}
+
+.product-quant i {
+    color: var(--medium-grey);
+    cursor: pointer;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+}
+
+
+.product-quant i:hover {
+    color: var(--light-blue);
+}
+
+.product-cart-button {
+    cursor: pointer;
+    border-radius: 1.5rem;
+    -webkit-border-radius: 1.5rem;
+    -moz-border-radius: 1.5rem;
+    -ms-border-radius: 1.5rem;
+    -o-border-radius: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--dark-blue);
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    margin-left: 2rem;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+}
+
+.product-cart-button i {
+    margin-right: 0.5rem;
+}
+
+.product-cart-button:hover {
+    background-color: var(--light-blue);
 }
