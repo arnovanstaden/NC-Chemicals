@@ -1,5 +1,3 @@
-// Animation
-
 // Filter Size Check Boxes
 $(".card-filter-size li").click(function () {
     $(this).find("i").toggle()
@@ -10,28 +8,51 @@ $("#shop-settings-sort").click(() => {
     $("#shop-settings-sort-dropdown").toggleClass("open")
 });
 
-// Toggle Product Size Class
+// Toggle Product Size & Price
 $(".product-sizes span").click(function () {
+
+    // Toggle Product Size CLass
     $(".product-sizes span").removeClass("active");
-    $(this).addClass("active")
+    $(this).addClass("active");
+
+    // Product Size Price Adjust
+    let price = parseInt($(this).attr("data-size-price"));
+    $(".product-price span").html(price);
+    $(".product-quant span").html(1);
 });
+
 
 // Product Page Quantity Change
 $(".product-quant .quant-minus").click(() => {
-    let value = parseInt($(".product-quant span").html());
-    if (value !== 1) {
-        value--;
+    let quantity = parseInt($(".product-quant span").html());
+    if (quantity !== 1) {
+        quantity--;
     }
-    $(".product-quant span").html(value);
+    $(".product-quant span").html(quantity);
+
+    // Adjust Price for Quantity
+    let price = parseInt($(".product-sizes span.active").attr("data-size-price"));
+    $(".product-price span").html(price * quantity);
+    console.log(quantity)
 });
 
 $(".product-quant .quant-plus").click(() => {
-    let value = parseInt($(".product-quant span").html());
-    value++;
-    $(".product-quant span").html(value);
+    let quantity = parseInt($(".product-quant span").html());
+    quantity++;
+    $(".product-quant span").html(quantity);
+
+    // Adjust Price for Quantity
+    let price = parseInt($(".product-sizes span.active").attr("data-size-price"));
+    $(".product-price span").html(price * quantity);
+    console.log(quantity);
+    console.log(price);
 });
 
-// Product Quantity
+
+
+
+
+
 
 
 // Footer Insert
