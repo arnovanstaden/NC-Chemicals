@@ -1,3 +1,5 @@
+// PRODUCT PAGE
+
 // Filter Size Check Boxes
 $(".card-filter-size li").click(function () {
     $(this).find("i").toggle()
@@ -23,31 +25,30 @@ $(".product-sizes span").click(function () {
 
 
 // Product Page Quantity Change
-$(".product-quant .quant-minus").click(() => {
-    let quantity = parseInt($(".product-quant span").html());
+$(document).on("click", ".product-info .product-quant .quant-minus", function () {
+    let quantity = parseInt($(this).next().html());
     if (quantity !== 1) {
         quantity--;
     }
-    $(".product-quant span").html(quantity);
+    $(this).next().html(quantity);
 
     // Adjust Price for Quantity
-    let price = parseInt($(".product-sizes span.active").attr("data-size-price"));
-    $(".product-price span").html(price * quantity);
-    console.log(quantity)
+    let price = parseInt($(".product-info .product-sizes span.active").attr("data-size-price"));
+    $(".product-info .product-price span").html(price * quantity);
 });
 
-$(".product-quant .quant-plus").click(() => {
-    let quantity = parseInt($(".product-quant span").html());
+$(document).on("click", ".product-info .product-quant .quant-plus", function () {
+    let quantity = parseInt($(this).prev().html());
     quantity++;
-    $(".product-quant span").html(quantity);
+    $(this).prev().html(quantity);
 
     // Adjust Price for Quantity
-    let price = parseInt($(".product-sizes span.active").attr("data-size-price"));
-    $(".product-price span").html(price * quantity);
-    console.log(quantity);
-    console.log(price);
+    let price = parseInt($(".product-info .product-sizes span.active").attr("data-size-price"));
+    $(".product-info .product-price span").html(price * quantity);
 });
 
+
+// -----------
 
 
 
