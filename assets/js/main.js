@@ -1,3 +1,13 @@
+// GENERAL
+
+// Navbar 
+
+$(".nav-menu-toggle, .nav-menu-body-hide").click(() => {
+    $(".nav-menu").toggleClass("open")
+    $(".nav-menu-body-hide").toggleClass("open")
+})
+
+
 // PRODUCT PAGE
 
 // Filter Size Check Boxes

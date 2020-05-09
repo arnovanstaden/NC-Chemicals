@@ -39,15 +39,33 @@
 
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-menu">
-            <i class="fal fa-bars"></i>
+        <div class="navbar-icon nav-menu-toggle">
+            <i class="far fa-bars"></i>
         </div>
         <a class="navbar-brand" href="./index.html">
             <img src="./assets/images/logos/navbar-logo.png" alt=""></a>
-        <div class="nav-cart">
-            <i class="fal fa-shopping-cart"></i>
+        <a class="navbar-icon nav-cart" href="./cart.html">
+            <i class="far fa-shopping-cart"></i>
+        </a>
+
+        <div class="nav-menu">
+            <div class="navbar-icon nav-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-menu-content">
+                <a href="./index.html">Home</a>
+                <a href="./shop.html">Shop</a>
+                <a href="./cart.html">Cart <span class="cart-count">1</span></a>
+                <a href="./cart.html">Contact</a>
+            </div>
+        </div>
+
+        <div class="nav-menu-body-hide">
+
         </div>
     </nav>
+
+
 
     <!-- Cart -->
 
@@ -100,7 +118,7 @@
                         </div>
                     </div>
                     <div class="cart-item-divider"></div>
-                    <div class="col-lg-10 col-md-12 offset-lg-1 cart-item" id="cart-item-1">
+                    <div class="col-lg-10 col-md-12 offset-lg-1 cart-item" id="cart-item-2">
                         <div class="col-md-1 cart-item-image">
                             <img src="./assets/images/products/t1.png" alt="">
                         </div>
@@ -147,6 +165,59 @@
 
             <!-- Cart Shipping -->
             <div class="row cart-shipping">
+
+                <div class="col-10 offset-1 cart-shipping-form">
+                    <form autocomplete="off">
+                        <div class="row">
+                            <div class="col-md-6 form-element">
+                                <label>First Name</label>
+                                <input type="text" name="name_first" placeholder="First Name" required>
+                            </div>
+                            <div class="col-md-6 form-element">
+                                <label>Last Name</label>
+                                <input type="text" name="name_last" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-element">
+                                <label>Email Address</label>
+                                <input type="email" name="email_address" placeholder="Email Address" required>
+                            </div>
+                            <div class="col-md-6 form-element">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone_number" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-element">
+                                <label>Address Line 1</label>
+                                <input type="email" name="adress_1" placeholder="Address Line 1" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-element">
+                                <label>Address Line 2</label>
+                                <input type="email" name="adress_2" placeholder="Address Line 2" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-element">
+                                <label>City</label>
+                                <input type="text" name="city" placeholder="City" required>
+                            </div>
+                            <div class="col-md-6 form-element">
+                                <label>Postcode</label>
+                                <input type="number" name="postcode" placeholder="Post Code" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-element">
+                                <label>Delivery Notes</label>
+                                <textarea type="email" name="delivery_notes" placeholder="Delivery Notes"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="col-md-6 cart-button cart-button-prev">
                     <i class="far fa-angle-left"></i>
                     <p>Previous Step</p>
@@ -154,6 +225,21 @@
                 <div class="col-md-6 cart-button cart-button-next">
                     <p>Next Step</p>
                     <i class="far fa-angle-right"></i>
+                </div>
+            </div>
+
+            <!-- Cart Payment -->
+            <div class="row cart-payment">
+
+                <div class="col-12 payment-message">
+                    <h3>Almost There Arno...</h3>
+                    <p>Click the button below to pay securely through Payfast</p>
+                    <button class="my-button">Pay Now</button>
+                </div>
+
+                <div class="col-md-12 cart-button cart-button-prev">
+                    <i class="far fa-angle-left"></i>
+                    <p>Previous Step</p>
                 </div>
             </div>
 
