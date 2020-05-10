@@ -13,9 +13,8 @@
     <meta name="copyright" content="2019 " />
 
     <!-- Website Content -->
-    <title> NC Chemicals | Shop </title>
-    <meta name="description"
-        content="NC Chemicals is an industry leader in the production of high-quality industrial, household & automotive chemical products.">
+    <title> Air Freshener</title>
+    <meta name="description" content="Removes most odours and creates a pleasant, lingering fragrance.">
     <meta name="keywords" content="" />
 
     <!-- Favicon -->
@@ -37,7 +36,7 @@
 
 </head>
 
-<body>
+<body onload="loadProduct()">
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -73,14 +72,12 @@
         <div class="container product-container">
             <div class="row">
                 <div class="col-md-7 product-info">
-                    <p class="product-category">Household</p>
-                    <h4 class="product-name">Air Freshener</h4>
-                    <p class="product-description">Removes most odours and creates a pleasant, lingering fragrance.
+                    <p class="product-category"></p>
+                    <h4 class="product-name"></h4>
+                    <p class="product-description">
                     </p>
                     <h6 class="product-label">Size:</h6>
                     <div class="product-sizes">
-                        <span class="active" data-size-price="120">5L</span>
-                        <span data-size-price="480">25L</span>
                     </div>
                     <h5 class="product-price">R <span>120</span>.00</h5>
                     <div class="product-add-cart">
@@ -116,8 +113,10 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script> -->
     <script src="./assets/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/cart.js"></script>
+    <script src="./assets/js/products.js"></script>
 
 
 </body>

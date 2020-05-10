@@ -21,7 +21,7 @@ $("#shop-settings-sort").click(() => {
 });
 
 // Toggle Product Size & Price
-$(".product-sizes span").click(function () {
+$(document).on("click", ".product-sizes span", function () {
 
     // Toggle Product Size CLass
     $(".product-sizes span").removeClass("active");

@@ -174,6 +174,7 @@ section {
     padding-left: 0.75rem;
 }
 
+
 .nav-menu-content a {
     margin-bottom: 0.4rem;
     color: var(--dark-grey);
@@ -370,7 +371,7 @@ footer a:hover {
     border-left: var(--shop-border);
     cursor: pointer;
     padding: 1.5rem;
-    color: var(--medium-blue);
+    color: var(--light-blue);
 }
 
 #shop-settings-sort {
@@ -536,6 +537,7 @@ footer a:hover {
 
 
 /* Product */
+
 .shop-product {
     border-bottom: var(--shop-border);
     border-right: var(--shop-border);
@@ -546,6 +548,7 @@ footer a:hover {
     -moz-transition: 0.2s ease;
     -ms-transition: 0.2s ease;
     -o-transition: 0.2s ease;
+    text-decoration: none;
 }
 
 .shop-product-name {
@@ -558,6 +561,7 @@ footer a:hover {
     -moz-transition: 0.4s ease;
     -ms-transition: 0.4s ease;
     -o-transition: 0.4s ease;
+    color: var(--dark-blue);
 }
 
 .shop-product-price {
@@ -565,6 +569,11 @@ footer a:hover {
     font-weight: 500;
     font-size: 0.9rem;
     margin-bottom: 0;
+    transition: 0.4s ease;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -ms-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
 }
 
 .shop-product-image {
@@ -579,6 +588,10 @@ footer a:hover {
     -o-transition: 0.4s ease;
 }
 
+.shop-product:hover {
+    text-decoration: none;
+}
+
 .shop-product:hover .shop-product-image {
     transform: scale(1.05);
     -webkit-transform: scale(1.05);
@@ -589,6 +602,10 @@ footer a:hover {
 
 .shop-product:hover .shop-product-name {
     color: var(--light-blue);
+}
+
+.shop-product:hover .shop-product-price {
+    color: var(--medium-grey);
 }
 
 
