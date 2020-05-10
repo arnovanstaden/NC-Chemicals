@@ -14,8 +14,7 @@
 
     <!-- Website Content -->
     <title> NC Chemicals | Your Cart </title>
-    <meta name="description"
-        content="NC Chemicals is an industry leader in the production of high-quality industrial, household & automotive chemical products.">
+    <meta name="description" content="Your Cart">
     <meta name="keywords" content="" />
 
     <!-- Favicon -->
@@ -32,6 +31,7 @@
 
     <!-- Internal -->
     <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/responsive.css" />
 
 </head>
 
@@ -56,7 +56,7 @@
                 <a href="./index.html">Home</a>
                 <a href="./shop.html">Shop</a>
                 <a href="./cart.html">Cart <span class="cart-count">1</span></a>
-                <a href="./cart.html">Contact</a>
+                <a href="./contact.html">Contact</a>
             </div>
         </div>
 
@@ -167,53 +167,77 @@
             <div class="row cart-shipping">
 
                 <div class="col-10 offset-1 cart-shipping-form">
-                    <form autocomplete="off">
+                    <form id="shipping-form" autocomplete="off" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-md-6 form-element">
                                 <label>First Name</label>
                                 <input type="text" name="name_first" placeholder="First Name" required>
+                                <div class="invalid-feedback">
+                                    Please enter your first name.
+                                </div>
                             </div>
                             <div class="col-md-6 form-element">
                                 <label>Last Name</label>
                                 <input type="text" name="name_last" placeholder="Last Name" required>
+                                <div class="invalid-feedback">
+                                    Please enter your last name.
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-element">
                                 <label>Email Address</label>
                                 <input type="email" name="email_address" placeholder="Email Address" required>
+                                <div class="invalid-feedback">
+                                    Please a valid email.
+                                </div>
                             </div>
                             <div class="col-md-6 form-element">
                                 <label>Phone Number</label>
                                 <input type="tel" name="phone_number" placeholder="Phone Number" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid phone number.
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-element">
                                 <label>Address Line 1</label>
-                                <input type="email" name="adress_1" placeholder="Address Line 1" required>
+                                <input type="text" name="adress_1" placeholder="Address Line 1" required>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please enter a valid address
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-element">
                                 <label>Address Line 2</label>
-                                <input type="email" name="adress_2" placeholder="Address Line 2" required>
+                                <input type="text" name="adress_2" placeholder="Address Line 2" required>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please enter a valid address
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-element">
                                 <label>City</label>
                                 <input type="text" name="city" placeholder="City" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid city
+                                </div>
                             </div>
                             <div class="col-md-6 form-element">
                                 <label>Postcode</label>
                                 <input type="number" name="postcode" placeholder="Post Code" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid postcode
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-element">
                                 <label>Delivery Notes</label>
-                                <textarea type="email" name="delivery_notes" placeholder="Delivery Notes"></textarea>
+                                <textarea type="text" name="delivery_notes" placeholder="Delivery Notes"></textarea>
                             </div>
                         </div>
                     </form>
