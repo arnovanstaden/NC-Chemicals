@@ -8,11 +8,21 @@ $(".nav-menu-toggle, .nav-menu-body-hide").click(() => {
 })
 
 
-// PRODUCT PAGE
+//------------------
+
+// SHOP PAGE
 
 // Filter Size Check Boxes
 $(".card-filter-size li").click(function () {
-    $(this).find("i").toggle()
+    $(this).toggleClass("active");
+    $(this).find("i").toggle();
+    filterSizes();
+});
+
+$(".card-filter-categories li").click(function () {
+    $(".card-filter-categories li p").removeClass("active");
+    $(this).find("p").toggleClass("active");
+    filterCategories();
 });
 
 // Sort Dropdown
@@ -20,51 +30,58 @@ $("#shop-settings-sort").click(() => {
     $("#shop-settings-sort-dropdown").toggleClass("open")
 });
 
-// Toggle Product Size & Price
-$(document).on("click", ".product-sizes span", function () {
 
-    // Toggle Product Size CLass
-    $(".product-sizes span").removeClass("active");
-    $(this).addClass("active");
+// SHOP FILTERS
 
-    // Product Size Price Adjust
-    let price = parseInt($(this).attr("data-size-price"));
-    $(".product-price span").html(price);
-    $(".product-quant span").html(1);
-});
+// Category
 
+const filterCategories = () => {
+    let activeCategory = $(".card-filter-categories p.active").html();
+    let shopSize = $(".shop-grid .shop-product").length;
+    // $(".shop-product").removeClass("filter-hide-category");
+    $(".shop-product").removeClass("filter-hide-category");
 
-// Product Page Quantity Change
-$(document).on("click", ".product-info .product-quant .quant-minus", function () {
-    let quantity = parseInt($(this).next().html());
-    if (quantity !== 1) {
-        quantity--;
+    for (let i = 1; i <= shopSize; i++) {
+        let productCategory = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-category");
+        if (!productCategory.includes(activeCategory)) {
+            $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-category")
+        }
     }
-    $(this).next().html(quantity);
+};
 
-    // Adjust Price for Quantity
-    let price = parseInt($(".product-info .product-sizes span.active").attr("data-size-price"));
-    $(".product-info .product-price span").html(price * quantity);
-});
+const filterSizes = () => {
+    let shopSize = $(".shop-grid .shop-product").length;
+    let filterCount = $(".card-filter-size li").length;
+    let activeSizeFilters = [];
+    $(".shop-product").removeClass("filter-hide-size");
 
-$(document).on("click", ".product-info .product-quant .quant-plus", function () {
-    let quantity = parseInt($(this).prev().html());
-    quantity++;
-    $(this).prev().html(quantity);
+    // Get all active filter sizes
+    for (let i = 1; i <= filterCount; i++) {
+        if ($(`.card-filter-size li:nth-child(${i})`).hasClass("active")) {
+            activeSizeFilters.push($(`.card-filter-size li:nth-child(${i}) p`).html());
+        }
+    }
+    console.log(activeSizeFilters);
 
-    // Adjust Price for Quantity
-    let price = parseInt($(".product-info .product-sizes span.active").attr("data-size-price"));
-    $(".product-info .product-price span").html(price * quantity);
-});
+    // hide product if at least one size doesn't match active size filter
+    for (let i = 1; i <= shopSize; i++) {
+        if (activeSizeFilters.length > 0) {
+            let productSizes = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-sizes").split(",");
+            activeSizeFilters.forEach(size => {
+                if (!productSizes.includes(size)) {
+                    $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-size");
+                }
+            })
+        }
+    }
+}
 
 
-// -----------
 
 
 
 
-
-
+// -------------------
 
 // Footer Insert
 $("footer").html(
@@ -123,3 +140,7 @@ $("footer").html(
             </div>
         </div>`
 )
+
+$(document).ready(() => {
+    updateCartCount();
+})

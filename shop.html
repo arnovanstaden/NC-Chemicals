@@ -49,6 +49,8 @@
             <img src="./assets/images/logos/navbar-logo.png" alt=""></a>
         <a class="navbar-icon nav-cart" href="./cart.html">
             <i class="far fa-shopping-cart"></i>
+            <span class="cart-count"></span>
+
         </a>
 
         <div class="nav-menu">
@@ -58,7 +60,7 @@
             <div class="nav-menu-content">
                 <a href="./index.html">Home</a>
                 <a href="./shop.html">Shop</a>
-                <a href="./cart.html">Cart <span class="cart-count">1</span></a>
+                <a href="./cart.html">Cart <span class="cart-count"></span></a>
                 <a href="./contact.html">Contact</a>
             </div>
         </div>
@@ -125,7 +127,6 @@
                                             <i class="far fa-angle-down"></i>
                                             Categories
                                         </h6>
-                                        <i class="far fa-times"></i>
                                     </div>
 
                                     <div id="collapseCategory" class="collapse" data-parent="#accordion">
@@ -157,7 +158,6 @@
                                             <i class="far fa-angle-down"></i>
                                             Price
                                         </h6>
-                                        <i class="far fa-times"></i>
                                     </div>
 
                                     <div id="collapsePrice" class="collapse" data-parent="#accordion">
@@ -176,26 +176,43 @@
                                             <i class="far fa-angle-down"></i>
                                             Sizes
                                         </h6>
-                                        <i class="far fa-times"></i>
                                     </div>
 
-                                    <div id="collapseSize" class="collapse show" data-parent="#accordion">
+                                    <div id="collapseSize" class="collapse" data-parent="#accordion">
                                         <div class="card-body card-filter-size">
                                             <ul>
                                                 <li>
-                                                    <p>Household</p>
+                                                    <p>1L</p>
                                                     <div class="custom-check">
                                                         <i class="fas fa-check"></i>
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <p>Industrial</p>
+                                                    <p>5L</p>
                                                     <div class="custom-check">
                                                         <i class="fas fa-check"></i>
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <p>Automotive</p>
+                                                    <p>25L</p>
+                                                    <div class="custom-check">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <p>1Kg</p>
+                                                    <div class="custom-check">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <p>5Kg</p>
+                                                    <div class="custom-check">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <p>25Kg</p>
                                                     <div class="custom-check">
                                                         <i class="fas fa-check"></i>
                                                     </div>
@@ -214,7 +231,8 @@
 
                                 <!-- Products Inserted Here -->
 
-                                <!-- <a class="shop-product col-md-4" href="./product.html#">
+                                <!-- <a class="shop-product col-md-4" href="./product.html#" data-product-sizes="5L,25L"
+                                    data-product-category="Household">
                                     <img class="shop-product-image" src="./assets/images/products/t1.png " alt="">
                                     <h5 class="shop-product-name">
                                         Air Freshener

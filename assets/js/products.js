@@ -11,7 +11,8 @@ const loadShopProducts = () => {
                 priceKeys = Object.keys(product.prices)
                 $(".shop-grid .row").append(
                     `
-                <a class="shop-product col-md-4" href="./product.html#${product.code}">
+                <a class="shop-product col-md-4" href="./product.html#${product.code}" data-product-category="${product.category}" data-product-sizes="${priceKeys}"
+                ">
                     <img class="shop-product-image" src="./assets/images/products/t1.png " alt="">
                     <h5 class="shop-product-name">
                         ${product.name}
@@ -22,10 +23,11 @@ const loadShopProducts = () => {
                 </a>
             `
                 )
-            })
+            });
         })
         .catch(err => console.log(err));
 }
+
 
 // Find product by Code
 async function findProduct(productCode) {
@@ -38,7 +40,7 @@ async function findProduct(productCode) {
                 if (productFound !== undefined) {
                     resolve(products[products.indexOf(productFound)]);
                 } else {
-                    return undefined
+                    resolve(undefined)
                 }
             })
             .catch(err => console.log(err));
@@ -63,21 +65,79 @@ const loadProduct = () => {
     findProduct(productCode).then(result => {
         product = result;
 
-        // Insert Product Details
-        $(".product-info .product-category").html(product.category)
-        $(".product-info .product-name").html(product.name)
-        $(".product-info .product-description").html(product.description);
+        if (product !== undefined) {
+            // Insert Product Details
+            document.title = product.name;
+            $(".product-container").attr("data-product-code", product.code)
+            $(".product-info .product-category").html(product.category)
+            $(".product-info .product-name").html(product.name)
+            $(".product-info .product-description").html(product.description);
 
-        // Prices
-        priceKeys = Object.keys(product.prices)
-        $(".product-info .product-price span").html(product.prices[priceKeys[0]]);
+            // Prices
+            priceKeys = Object.keys(product.prices)
+            $(".product-info .product-price span").html(product.prices[priceKeys[0]]);
 
-        // Sizes
-        priceKeys.forEach(key => {
-            $(".product-sizes").append(
-                `<span data-size-price="${product.prices[key]}">${key}</span>`
-            );
-        })
-        $(".product-sizes span:nth-child(1)").addClass("active")
+            // Sizes
+            priceKeys.forEach(key => {
+                $(".product-sizes").append(
+                    `<span data-size-price="${product.prices[key]}">${key}</span>`
+                );
+            })
+            $(".product-sizes span:nth-child(1)").addClass("active")
+        } else {
+            location.replace("./shop.html")
+        }
+
+
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+// PRODUCTS UI
+
+
+// Toggle Product Size & Price
+$(document).on("click", ".product-sizes span", function () {
+
+    // Toggle Product Size CLass
+    $(".product-sizes span").removeClass("active");
+    $(this).addClass("active");
+
+    // Product Size Price Adjust
+    let price = parseInt($(this).attr("data-size-price"));
+    $(".product-price span").html(price);
+    $(".product-quant span").html(1);
+});
+
+
+// Product Page Quantity Change
+$(document).on("click", ".product-info .product-quant .quant-minus", function () {
+    let quantity = parseInt($(this).next().html());
+    if (quantity !== 1) {
+        quantity--;
+    }
+    $(this).next().html(quantity);
+
+    // Adjust Price for Quantity
+    let price = parseInt($(".product-info .product-sizes span.active").attr("data-size-price"));
+    $(".product-info .product-price span").html(price * quantity);
+});
+
+$(document).on("click", ".product-info .product-quant .quant-plus", function () {
+    let quantity = parseInt($(this).prev().html());
+    quantity++;
+    $(this).prev().html(quantity);
+
+    // Adjust Price for Quantity
+    let price = parseInt($(".product-info .product-sizes span.active").attr("data-size-price"));
+    $(".product-info .product-price span").html(price * quantity);
+});

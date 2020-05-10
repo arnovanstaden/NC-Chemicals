@@ -13,7 +13,7 @@
     <meta name="copyright" content="2019 " />
 
     <!-- Website Content -->
-    <title> Air Freshener</title>
+    <title></title>
     <meta name="description" content="Removes most odours and creates a pleasant, lingering fragrance.">
     <meta name="keywords" content="" />
 
@@ -47,6 +47,8 @@
             <img src="./assets/images/logos/navbar-logo.png" alt=""></a>
         <a class="navbar-icon nav-cart" href="./cart.html">
             <i class="far fa-shopping-cart"></i>
+            <span class="cart-count"></span>
+
         </a>
 
         <div class="nav-menu">
@@ -56,7 +58,7 @@
             <div class="nav-menu-content">
                 <a href="./index.html">Home</a>
                 <a href="./shop.html">Shop</a>
-                <a href="./cart.html">Cart <span class="cart-count">1</span></a>
+                <a href="./cart.html">Cart <span class="cart-count"></span></a>
                 <a href="./contact.html">Contact</a>
             </div>
         </div>
@@ -79,14 +81,15 @@
                     <h6 class="product-label">Size:</h6>
                     <div class="product-sizes">
                     </div>
-                    <h5 class="product-price">R <span>120</span>.00</h5>
+                    <h5 class="product-price">R <span></span>.00</h5>
                     <div class="product-add-cart">
                         <div class="product-quant">
                             <i class="far fa-minus quant-minus"></i>
                             <span>1</span>
                             <i class="far fa-plus quant-plus"></i>
                         </div>
-                        <button class="product-cart-button my-button"><i class="fal fa-cart-plus"></i>Add to
+                        <button onclick="addToCart()" class="product-cart-button my-button"><i
+                                class="fal fa-cart-plus"></i>Add to
                             Cart</button>
                     </div>
                 </div>

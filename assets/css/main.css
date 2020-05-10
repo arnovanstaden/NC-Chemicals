@@ -69,6 +69,10 @@ section {
     text-decoration: none;
 }
 
+.my-button:focus {
+    outline: none;
+}
+
 
 /* Navigation */
 
@@ -111,6 +115,25 @@ section {
 
 .navbar>.navbar-icon:nth-child(3) {
     border-left: 1px solid var(--light-grey);
+}
+
+.navbar-icon .cart-count {
+    background-color: var(--light-blue);
+    color: white;
+    padding: 0 5px;
+    font-size: 0.5rem;
+    font-weight: 500;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    position: absolute;
+    top: 10%;
+}
+
+.cart-count.empty {
+    display: none;
 }
 
 /* Nav Menu */
@@ -488,11 +511,16 @@ footer a:hover {
 .card-filter-categories li p,
 .card-filter-size p {
     margin: 0;
-    transition: 0.3a ease;
-    -webkit-transition: 0.3a ease;
-    -moz-transition: 0.3a ease;
-    -ms-transition: 0.3a ease;
-    -o-transition: 0.3a ease;
+    transition: 0.3 ease;
+    -webkit-transition: 0.3 ease;
+    -moz-transition: 0.3 ease;
+    -ms-transition: 0.3 ease;
+    -o-transition: 0.3 ease;
+}
+
+.card-filter-categories li p.active {
+    color: var(--light-blue);
+    font-weight: 500;
 }
 
 .card-filter-categories li:hover p,
@@ -532,6 +560,10 @@ footer a:hover {
     display: none;
 }
 
+.filter-hide-category,
+.filter-hide-size {
+    display: none;
+}
 
 
 
@@ -543,11 +575,11 @@ footer a:hover {
     border-right: var(--shop-border);
     padding: 1rem;
     cursor: pointer;
-    transition: 0.2s ease;
-    -webkit-transition: 0.2s ease;
-    -moz-transition: 0.2s ease;
-    -ms-transition: 0.2s ease;
-    -o-transition: 0.2s ease;
+    transition: 0.4s ease;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -ms-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
     text-decoration: none;
 }
 
