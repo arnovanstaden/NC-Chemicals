@@ -251,3 +251,22 @@ const loadCart = () => {
             .catch(err => console.log(err));
     }
 }
+
+
+const sendPayment = () => {
+    const deliveryAddress =
+        $("#shipping-form input[name='adress_1']").val() + "," +
+        $("#shipping-form input[name='adress_2']").val() + ", " +
+        $("#shipping-form input[name='city']").val() + ", " +
+        $("#shipping-form input[name='postcode']").val();
+
+    $("#shipping-form input[name='item_description']").val(localStorage.getItem("cart"));
+    $("#shipping-form input[name='custom_str1']").val($("#shipping-form input[name='cell_number']").val());
+    $("#shipping-form input[name='custom_str2']").val(deliveryAddress);
+    $("#shipping-form input[name='custom_str3']").val($("#shipping-form textarea[name='delivery_notes']").val());
+    $("#shipping-form input[name='amount']").val(parseInt($(".cart-checkout-total span").html()));
+    $("#shipping-form input[name='merchant_id']").val("10016549");
+    $("#shipping-form input[name='merchant_key']").val("sxou1f0t4mr2c");
+
+    $("#shipping-form").submit();
+}

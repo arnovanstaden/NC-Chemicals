@@ -1301,3 +1301,43 @@ input[type=number] {
 .submit-button:hover input {
     color: white;
 }
+
+
+
+
+
+/* ------------------------------- */
+
+
+/* SUCCESS PAGE */
+.section-success .container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 70vh;
+    text-align: center;
+}
+
+.section-success i {
+    color: var(--light-blue);
+    font-size: 3rem;
+}
+
+.section-success h1 {
+    font-family: "Oswald";
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.section-success h6 {
+    color: var(--dark-grey);
+    margin: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.section-success p {
+    color: var(--medium-grey);
+    margin: 1rem;
+    font-size: 0.9rem;
+}

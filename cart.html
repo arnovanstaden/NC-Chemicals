@@ -148,7 +148,8 @@
             <div class="row cart-shipping">
 
                 <div class="col-10 offset-1 cart-shipping-form">
-                    <form id="shipping-form" autocomplete="off" class="needs-validation" novalidate>
+                    <form id="shipping-form" autocomplete="off" class="needs-validation" novalidate
+                        action="https://sandbox.payfast.co.za/eng/process" method="POST">
                         <div class="row">
                             <div class="col-md-6 form-element">
                                 <label>First Name</label>
@@ -175,7 +176,7 @@
                             </div>
                             <div class="col-md-6 form-element">
                                 <label>Phone Number</label>
-                                <input type="tel" name="phone_number" placeholder="Phone Number" required>
+                                <input type="tel" name="cell_number" placeholder="Phone Number" required>
                                 <div class="invalid-feedback">
                                     Please enter a valid phone number.
                                 </div>
@@ -221,9 +222,22 @@
                                 <textarea type="text" name="delivery_notes" placeholder="Delivery Notes"></textarea>
                             </div>
                         </div>
+                        <input type="hidden" name="merchant_id" value="">
+                        <input type="hidden" name="merchant_key" value="">
+                        <input type="hidden" name="return_url" value="http://127.0.0.1:5500/success.html">
+                        <input type="hidden" name="cancel_url" value="http://127.0.0.1:5500/cart.html">
+                        <input type="hidden" name="notify_url"
+                            value="https://webhook.site/2e484810-c3cd-49f3-82c9-bff0c7abbe22">
+
+                        <input type="hidden" name="item_name" value="NC Chemicals Cart">
+                        <input type="hidden" name="item_description" value="NC Chemicals Cart">
+                        <input type="hidden" name="amount" value="">
+                        <input type="hidden" name="custom_str1" value="">
+                        <input type="hidden" name="custom_str2" value="">
+                        <input type="hidden" name="custom_str3" value="">
                     </form>
                 </div>
-                <div class="col-md-6 cart-button cart-button-prev">
+                <div class=" col-md-6 cart-button cart-button-prev">
                     <i class="far fa-angle-left"></i>
                     <p>Previous Step</p>
                 </div>
@@ -239,7 +253,7 @@
                 <div class="col-12 payment-message">
                     <h3>Almost There Arno...</h3>
                     <p>Click the button below to pay securely through Payfast</p>
-                    <button class="my-button">Pay Now</button>
+                    <button class="my-button" onclick="sendPayment()">Pay Now</button>
                 </div>
 
                 <div class="col-md-12 cart-button cart-button-prev">
