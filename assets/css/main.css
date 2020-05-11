@@ -29,6 +29,12 @@ html {
     color: var(--dark-blue);
 }
 
+html.disabled {
+    overflow: hidden;
+    overflow: hidden;
+    max-height: 100%;
+}
+
 section {
     padding: 4rem 0;
 }
@@ -46,8 +52,27 @@ section {
     -o-border-radius: 1.5rem;
     padding: 0.5rem 1.5rem;
     background-color: var(--dark-blue);
-    border: none;
+    border: 2px solid var(--dark-blue);
     color: white;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+}
+
+.my-button-alt {
+    cursor: pointer;
+    border-radius: 1.5rem;
+    -webkit-border-radius: 1.5rem;
+    -moz-border-radius: 1.5rem;
+    -ms-border-radius: 1.5rem;
+    -o-border-radius: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    background-color: transparent;
+    border: 2px solid var(--dark-blue);
+    color: var(--dark-blue);
     font-size: 0.9rem;
     transition: 0.3s ease;
     -webkit-transition: 0.3s ease;
@@ -62,6 +87,13 @@ section {
 
 .my-button:hover {
     background-color: var(--light-blue);
+    border-color: var(--light-blue);
+}
+
+
+.my-button-alt:hover {
+    background-color: var(--dark-blue);
+    color: white;
 }
 
 .my-button a {
@@ -612,7 +644,7 @@ footer a:hover {
     display: block;
     width: 70%;
     margin: 0 auto;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
     transition: 0.4s ease;
     -webkit-transition: 0.4s ease;
     -moz-transition: 0.4s ease;
@@ -785,6 +817,47 @@ footer a:hover {
     color: var(--light-blue);
 }
 
+.notify-cart {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(35, 35, 35, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+}
+
+.notify-cart.open {
+    display: flex;
+}
+
+.notify-cart-inner {
+    background-color: white;
+    border: 4px solid var(--light-blue);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.notify-cart-inner h4 {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.notify-cart-inner button {
+    margin: 0 1rem;
+}
 
 
 /* ----------------------------------- */
@@ -927,6 +1000,7 @@ footer a:hover {
     align-content: center;
     align-items: center;
     padding: 1.5rem 0;
+    flex-wrap: wrap;
 }
 
 .cart-item>div {
@@ -963,7 +1037,6 @@ footer a:hover {
 }
 
 .cart-item-quant .product-quant {
-    display: inline-block;
     border: 0.5px solid var(--medium-grey);
 }
 
@@ -1001,6 +1074,8 @@ footer a:hover {
 
 .cart-checkout-total-grid {
     padding: 2rem 0;
+    display: flex;
+    font-size: 1rem;
 }
 
 .cart-checkout-total-grid>div {
@@ -1010,7 +1085,6 @@ footer a:hover {
 
 .cart-checkout-total-grid h6 {
     font-weight: 600;
-    font-size: 0.9rem;
     color: var(--dark-blue);
     margin: 0;
 }
@@ -1106,6 +1180,11 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+#shipping-form #delivery-notes {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 /* Payment Section */
@@ -1212,7 +1291,7 @@ input[type=number] {
 .contact-details h4 {
     font-family: "Oswald";
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .contact-info {

@@ -11,7 +11,7 @@ const loadShopProducts = () => {
                 priceKeys = Object.keys(product.prices)
                 $(".shop-grid .row").append(
                     `
-                <a class="shop-product col-md-4" href="./product.html#${product.code}" data-product-category="${product.category}" data-product-sizes="${priceKeys}"
+                <a class="shop-product col-sm-6 col-md-4 col-lg-4" href="./product.html#${product.code}" data-product-category="${product.category}" data-product-sizes="${priceKeys}"
                 ">
                     <img class="shop-product-image" src="./assets/images/products/t1.png " alt="">
                     <h5 class="shop-product-name">
@@ -141,3 +141,7 @@ $(document).on("click", ".product-info .product-quant .quant-plus", function () 
     let price = parseInt($(".product-info .product-sizes span.active").attr("data-size-price"));
     $(".product-info .product-price span").html(price * quantity);
 });
+
+$(".notify-cart .my-button-alt").click(() => {
+    $(".notify-cart").removeClass("open")
+})
