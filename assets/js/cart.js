@@ -109,7 +109,7 @@ const validateCartForm = () => {
 // Check if Cart is Empty
 const checkCartEmpty = () => {
     currentCart = JSON.parse(localStorage.getItem("cart"));
-    if (currentCart.length < 1 || currentCart === null) {
+    if (currentCart === null || currentCart.length < 1) {
         $(".section-cart").hide();
         $(".section-empty-cart").addClass("active")
         return true
