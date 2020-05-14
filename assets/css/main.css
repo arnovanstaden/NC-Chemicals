@@ -137,15 +137,18 @@ section {
 
 .navbar-icon:hover {
     background-color: var(--light-blue);
+    border: none
+}
+
+.navbar-icon:hover i {
     color: white;
-    border-color: white;
 }
 
 .navbar>.navbar-icon:nth-child(1) {
     border-right: 1px solid var(--light-grey);
 }
 
-.navbar>.navbar-icon:nth-child(3) {
+.navbar>div .navbar-icon:nth-child(2) {
     border-left: 1px solid var(--light-grey);
 }
 
@@ -214,10 +217,16 @@ section {
     display: block;
 }
 
-.nav-menu .navbar-icon {
+.nav-menu .nav-menu-toggle {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.nav-menu .nav-search {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .nav-menu-content {
@@ -266,6 +275,89 @@ section {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     margin-left: 5px;
+}
+
+
+/* Search */
+.search-modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: 2s;
+    -webkit-transition: 2s;
+    -moz-transition: 2s;
+    -ms-transition: 2s;
+    -o-transition: 2s;
+    overflow: hidden;
+}
+
+.search-modal.open {
+    display: flex;
+}
+
+.search-inner {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(35, 35, 35, 0.85);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.search-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    z-index: 105;
+    cursor: pointer;
+}
+
+.search-content {
+    z-index: 105;
+    padding: 3rem;
+}
+
+.search-content .my-button {
+    display: block;
+    margin: 2rem auto;
+}
+
+.search-content .my-button {
+    background-color: transparent;
+    border-color: var(--light-blue);
+}
+
+.search-content .my-button:hover {
+    background-color: var(--light-blue);
+}
+
+.search-content input {
+    background-color: transparent;
+    border: none;
+    padding: 1rem;
+    border-bottom: 2px solid var(--light-blue);
+    color: white;
+    font-weight: 500;
+    text-align: center;
+}
+
+.search-content input:focus {
+    outline: none;
+}
+
+.search-content p {
+    color: var(--light-grey);
+    font-weight: 300;
+    text-align: center;
 }
 
 /* Footer */
@@ -515,6 +607,19 @@ footer a:hover {
 
 .card-header h6 i {
     margin-right: 10px;
+    transition: 0.4s ease;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -ms-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
+}
+
+.card-header h6.collapsed i {
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
 }
 
 .card-header>i {
@@ -523,15 +628,13 @@ footer a:hover {
     cursor: pointer;
 }
 
-.card-filter-categories ul,
-.card-filter-size ul {
+.card-filter-check ul {
     padding: 0;
     list-style: none;
     padding-left: 1.5rem;
 }
 
-.card-filter-categories li,
-.card-filter-size li {
+.card-filter-check li {
     display: flex;
     justify-content: space-between;
     margin: 0.75rem 0;
@@ -540,8 +643,7 @@ footer a:hover {
     cursor: pointer;
 }
 
-.card-filter-categories li p,
-.card-filter-size p {
+.card-filter-check p {
     margin: 0;
     transition: 0.3 ease;
     -webkit-transition: 0.3 ease;
@@ -550,23 +652,21 @@ footer a:hover {
     -o-transition: 0.3 ease;
 }
 
-.card-filter-categories li p.active {
+.card-filter-check li p.active {
     color: var(--light-blue);
     font-weight: 500;
 }
 
-.card-filter-categories li:hover p,
-.card-filter-size li:hover p {
+.card-filter-check li:hover p {
     color: var(--light-blue);
 }
 
-.card-filter-categories li span,
-.card-filter-size li span {
+.card-filter-check li span {
     color: var(--medium-grey);
     font-size: 0.8rem;
 }
 
-.card-filter-size .custom-check {
+.card-filter-check .custom-check {
     border: 1px solid var(--light-grey);
     width: 1.1rem;
     height: 1.1rem;
@@ -579,12 +679,12 @@ footer a:hover {
     cursor: pointer;
 }
 
-.card-filter-size li:hover .custom-check {
+.card-filter-check li:hover .custom-check {
     border: 1px solid var(--light-blue);
 }
 
 
-.card-filter-size .custom-check i {
+.card-filter-check .custom-check i {
     font-size: 0.6rem;
     padding: 0.2rem;
     color: var(--light-blue);

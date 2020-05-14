@@ -8,22 +8,32 @@ $(".nav-menu-toggle, .nav-menu-body-hide").click(() => {
     $("html").toggleClass("disabled")
 })
 
+// Search
+$(".nav-search").click(() => {
+    $(".search-modal").toggleClass("open");
+    $("html").toggleClass("disabled")
+});
+
+$(".nav-menu .nav-search").click(() => {
+    $(".nav-menu").toggleClass("open")
+    $(".nav-menu-body-hide").toggleClass("open")
+})
+
+$(".search-inner, .search-close").click(() => {
+    $(".search-modal").toggleClass("open");
+    $("html").toggleClass("disabled")
+
+})
 
 //------------------
 
 // SHOP PAGE
 
 // Filter Size Check Boxes
-$(".card-filter-size li").click(function () {
+$(".card-filter-check li").click(function () {
     $(this).toggleClass("active");
     $(this).find("i").toggle();
-    filterSizes();
-});
-
-$(".card-filter-categories li").click(function () {
-    $(".card-filter-categories li p").removeClass("active");
-    $(this).find("p").toggleClass("active");
-    filterCategories();
+    filter();
 });
 
 // Sort Dropdown

@@ -45,17 +45,25 @@
         <div class="navbar-icon nav-menu-toggle">
             <i class="far fa-bars"></i>
         </div>
+
         <a class="navbar-brand" href="./index.html">
             <img src="./assets/images/logos/navbar-logo.png" alt=""></a>
-        <a class="navbar-icon nav-cart" href="./cart.html">
-            <i class="far fa-shopping-cart"></i>
-            <span class="cart-count"></span>
-
-        </a>
+        <div>
+            <a class="navbar-icon nav-search">
+                <i class="far fa-search"></i>
+            </a>
+            <a class="navbar-icon nav-cart" href="./cart.html">
+                <i class="far fa-shopping-cart"></i>
+                <span class="cart-count"></span>
+            </a>
+        </div>
 
         <div class="nav-menu">
             <div class="navbar-icon nav-menu-toggle">
                 <i class="fas fa-bars"></i>
+            </div>
+            <div class="navbar-icon nav-search">
+                <i class="far fa-search"></i>
             </div>
             <div class="nav-menu-content">
                 <a href="./index.html">Home</a>
@@ -130,39 +138,27 @@
                                     </div>
 
                                     <div id="collapseCategory" class="collapse" data-parent="#accordion">
-                                        <div class="card-body card-filter-categories">
+                                        <div class="card-body card-filter-check" id="card-filter-categories">
                                             <ul>
                                                 <li>
                                                     <p>Household</p>
-                                                    <span>9</span>
+                                                    <div class="custom-check">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
                                                 </li>
                                                 <li>
                                                     <p>Industrial</p>
-                                                    <span>10</span>
+                                                    <div class="custom-check">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
                                                 </li>
                                                 <li>
                                                     <p>Automotive</p>
-                                                    <span>18</span>
+                                                    <div class="custom-check">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Filter Price -->
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h6 class="mb-0" type="button" data-toggle="collapse"
-                                            data-target="#collapsePrice" aria-expanded="true"
-                                            aria-controls="collapsePrice">
-                                            <i class="far fa-angle-down"></i>
-                                            Price
-                                        </h6>
-                                    </div>
-
-                                    <div id="collapsePrice" class="collapse" data-parent="#accordion">
-                                        <div class="card-body card-filter-price">
-
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +175,7 @@
                                     </div>
 
                                     <div id="collapseSize" class="collapse" data-parent="#accordion">
-                                        <div class="card-body card-filter-size">
+                                        <div class="card-body card-filter-check" id="card-filter-size">
                                             <ul>
                                                 <li>
                                                     <p>1L</p>
@@ -221,6 +217,25 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Filter Price -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0" type="button" data-toggle="collapse"
+                                            data-target="#collapsePrice" aria-expanded="true"
+                                            aria-controls="collapsePrice">
+                                            <i class="far fa-angle-down"></i>
+                                            Price
+                                        </h6>
+                                    </div>
+
+                                    <div id="collapsePrice" class="collapse" data-parent="#accordion">
+                                        <div class="card-body card-filter-price">
+
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
                         </div>
@@ -254,6 +269,17 @@
     <footer>
 
     </footer>
+
+
+    <div class="search-modal">
+        <i class="fal fa-times search-close"></i>
+        <div class="search-inner"></div>
+        <div class="search-content">
+            <p>What are you looking for?</p>
+            <input type="text">
+            <button class="my-button" onclick="search()">Search</button>
+        </div>
+    </div>
 
 
 
