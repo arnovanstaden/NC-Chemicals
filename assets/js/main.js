@@ -1,4 +1,6 @@
 // GENERAL
+const api_url = "http://localhost:3000";
+// const api_url = "https://nc-chemicals-backend.herokuapp.com/";
 
 // Navbar 
 
@@ -24,6 +26,12 @@ $(".search-inner, .search-close").click(() => {
     $("html").toggleClass("disabled")
 
 })
+
+// Loader
+
+const hideLoader = () => {
+    $(".loader").fadeOut();
+}
 
 //------------------
 

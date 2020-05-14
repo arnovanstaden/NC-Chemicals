@@ -451,6 +451,44 @@ footer a:hover {
     margin-right: 0.75rem;
 }
 
+
+/* Loader */
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.spinner {
+    border: 5px solid var(--dark-grey);
+    /*Lightgrey*/
+    border-top: 5px solid var(--light-blue);
+    /*Blue*/
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.5s linear infinite;
+    -webkit-animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 /* Scrollbars */
 
 ::-webkit-scrollbar {
@@ -1120,11 +1158,22 @@ footer a:hover {
     display: block !important;
 }
 
-.cart-item-name h6 {
+.cart-item-name a {
     margin: 0;
     font-family: "Oswald";
     font-weight: 500;
     font-size: 1.1rem;
+    color: var(--dark-grey);
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.cart-item-name:hover a {
+    color: var(--light-blue);
 }
 
 .cart-item-name p {

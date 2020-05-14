@@ -1,7 +1,13 @@
 // Handling any cart related logic
 
+const deliveryFee = 180;
 
 // CART UI
+
+// Cart Steps
+$(".cart-container .cart-button-next, .cart-container .cart-button-prev").click(() => {
+    $(document).scrollTop(0)
+})
 
 // Cart Steps
 $(".cart-checkout .cart-button-next").click(() => {
@@ -22,6 +28,9 @@ $(".cart-shipping .cart-button-next").click(() => {
 
     // Set Name
     $(".payment-message span").html($("#shipping-form input[name='name_first']").val());
+    // Set Name
+    $(".payment-message h3 span").html($("#shipping-form input[name='name_first']").val());
+    $(".payment-message p span").html(`R ${$(".cart-checkout-total span").html()}`);
 });
 
 $(".cart-shipping .cart-button-prev").click(() => {
@@ -64,6 +73,8 @@ $(document).on("click", ".cart-item .product-quant .quant-minus", function () {
     let cartItemTotal = cartItemPrice * quantity;
     $(`#${cartItemID} .cart-item-total span`).html(cartItemTotal);
     calculateCartTotal();
+    updateCartQuantity();
+
 });
 
 $(document).on("click", ".cart-item .product-quant .quant-plus", function () {
@@ -78,6 +89,8 @@ $(document).on("click", ".cart-item .product-quant .quant-plus", function () {
     let cartItemTotal = cartItemPrice * quantity;
     $(`#${cartItemID} .cart-item-total span`).html(cartItemTotal);
     calculateCartTotal();
+    updateCartQuantity();
+
 });
 
 // Remove Item From Cart
@@ -134,6 +147,7 @@ const calculateCartTotal = () => {
     for (let i = 1; i <= cartSize; i++) {
         cartTotal += parseInt($(`#cart-item-${i} .cart-item-total span`).html());
     }
+    cartTotal += deliveryFee;
     $(".cart-checkout-total span").html(cartTotal)
 }
 
@@ -141,6 +155,28 @@ const calculateCartTotal = () => {
 const clearCart = () => {
     localStorage.clear();
     updateCartCount()
+}
+
+const showCart = () => {
+    console.log(JSON.parse(localStorage.getItem("cart")));
+}
+
+// Update Cart Quanity
+const updateCartQuantity = () => {
+    // let currentCart = JSON.parse(localStorage.getItem("cart"));
+    // let productCode;
+    // let productQuant;
+    // const cartSize = $(".cart-checkout-grid .cart-item").length;
+    // for (let i = 1; i <= cartSize; i++) {
+    //     productCode = $(`#cart-item-${i}`).attr("data-product-code");
+    //     productQuant = $(`#cart-item-${i} .product-quant span`).html();
+    //     currentCart.forEach(cartItem => {
+    //         if (cartItem.code === productCode) {
+    //             cartItem.quantity = productQuant
+    //         }
+    //     });
+    // }
+    // localStorage.setItem("cart", JSON.stringify(currentCart));
 }
 
 // Update Cart Count
@@ -207,19 +243,25 @@ const removeCartItem = (code) => {
     localStorage.setItem("cart", JSON.stringify(currentCart));
     checkCartEmpty();
     updateCartCount();
+
+    // Adjust Cart Item ID's
+    const cartSize = $(".cart-checkout-grid .cart-item").length;
+    for (let i = 1; i <= cartSize; i++) {
+        $(`.cart-checkout-grid .cart-item:nth-child(${i}`).attr("id", `cart-item-${i}`)
+    }
 }
 
 const loadCart = () => {
 
     if (!checkCartEmpty()) {
-        console.log("load")
         currentCart = JSON.parse(localStorage.getItem("cart"));
         let productCodes = [];
         currentCart.forEach(item => {
             productCodes.push(item.code)
         });
+        console.log(productCodes)
 
-        axios.get("./assets/js/products.json")
+        axios.get(`${api_url}/products`)
             .then(response => {
                 products = response.data;
 
@@ -230,13 +272,12 @@ const loadCart = () => {
                     count++;
                     $(".cart-checkout-grid").append(
                         `
-                        <div class="col-lg-10 col-md-12 offset-lg-1 cart-item" id="cart-item-${count}">
+                        <div class="col-lg-10 col-md-12 offset-lg-1 cart-item" id="cart-item-${count}" data-product-code="${product.code}">
                             <div class="col-md-1  cart-item-image">
-                                <img src="./assets/images/products/t1.png" alt="">
+                            <img src="${product.productThumbnailUrl}" class="img-fluid" alt="">
                             </div>
                             <div class="col-md-4 col-lg-3 cart-item-name">
-                                <h6>${product.name}</h6>
-                                <p>${product.category}</p>
+                            <a target="blank" href="./product.html#${product.code}">${product.name}</a>
                             </div>
                             <div class="col-md-2 col-sm-4 col-6  cart-item-price">
                                 <p>R <span>${product.prices[currentCart[count-1].size]}</span>.00</p>
@@ -259,8 +300,9 @@ const loadCart = () => {
                         `
                     )
                 })
-
+                hideLoader()
                 calculateCartTotal();
+                $(".cart-checkout-total-delivery span").html(deliveryFee)
             })
             .catch(err => console.log(err));
     }

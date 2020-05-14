@@ -1,9 +1,8 @@
-// Handling any product related logic
-
+// GET PRODUCTS DATA
 
 // Insert Products in Shop
 const loadShopProducts = () => {
-    axios.get("./assets/js/products.json")
+    axios.get(`${api_url}/products`)
         .then(response => {
             products = response.data;
 
@@ -28,28 +27,6 @@ const loadShopProducts = () => {
         .catch(err => console.log(err));
 }
 
-
-// Find product by Code
-async function findProduct(productCode) {
-
-    let promise = new Promise((resolve, reject) => {
-        axios.get("./assets/js/products.json")
-            .then(response => {
-                products = response.data;
-                let productFound = products.find(product => product.code === productCode);
-                if (productFound !== undefined) {
-                    resolve(products[products.indexOf(productFound)]);
-                } else {
-                    resolve(undefined)
-                }
-            })
-            .catch(err => console.log(err));
-    })
-
-    let product = await promise;
-    return product
-}
-
 // Insert Product in Product Page
 
 const loadProduct = () => {
@@ -62,44 +39,109 @@ const loadProduct = () => {
     productCode = productCode.substr(1); //Remove #
 
     let product = {};
-    findProduct(productCode).then(result => {
-        product = result;
+    axios.get(`${api_url}/products/productCode/${productCode}`)
+        .then(response => {
+            product = response.data;
 
-        if (product !== undefined) {
-            // Insert Product Details
-            document.title = product.name;
-            $(".product-container").attr("data-product-code", product.code)
-            $(".product-info .product-category").html(product.category)
-            $(".product-info .product-name").html(product.name)
-            $(".product-info .product-description").html(product.description);
+            if (product !== undefined) {
+                // Insert Product Details
+                document.title = product.name;
+                $(".product-container").attr("data-product-code", product.code)
+                $(".product-info .product-category").html(product.category)
+                $(".product-info .product-name").html(product.name)
+                $(".product-info .product-description").html(product.description);
 
-            // Prices
-            priceKeys = Object.keys(product.prices)
-            $(".product-info .product-price span").html(product.prices[priceKeys[0]]);
+                // Prices
+                priceKeys = Object.keys(product.prices)
+                $(".product-info .product-price span").html(product.prices[priceKeys[0]]);
 
-            // Sizes
-            priceKeys.forEach(key => {
-                $(".product-sizes").append(
-                    `<span data-size-price="${product.prices[key]}">${key}</span>`
-                );
-            })
-            $(".product-sizes span:nth-child(1)").addClass("active")
-        } else {
-            location.replace("./shop.html")
-        }
-
-
-    });
+                // Sizes
+                priceKeys.forEach(key => {
+                    $(".product-sizes").append(
+                        `<span data-size-price="${product.prices[key]}">${key}</span>`
+                    );
+                })
+                $(".product-sizes span:nth-child(1)").addClass("active")
+            } else {
+                location.replace("./shop.html")
+            }
+        });
 }
 
+// PRODUCT UTILS
+
+// Filter products
+const filterProducts = (filterType) => {
+    let shopSize = $(".shop-grid .shop-product").length;
+
+    if (filterType === "brand") {
+        let filterBrandCount = $("#filter-brand li").length
+        let activeBrandFilters = [];
+        $(`.shop-grid .shop-product`).removeClass("filter-hide-brand");
+
+        // Get all active filter sizes
+        for (let i = 1; i <= filterBrandCount; i++) {
+            if ($(`#filter-brand li:nth-child(${i})`).hasClass("active")) {
+                activeBrandFilters.push($(`#filter-brand li:nth-child(${i}) p`).html().toLowerCase());
+            }
+        }
+
+        // hide product if at least one size doesn't match active size filter
+        for (let i = 1; i <= shopSize; i++) {
+            if (activeBrandFilters.length > 0) {
+                let productBrand = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-brand").toLowerCase()
+                if (!activeBrandFilters.includes(productBrand)) {
+                    $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-brand");
+                }
+            }
+        }
+    }
 
 
+    if (filterType === "type") {
+        let filterTypeCount = $("#filter-type li").length
+        let activeTypeFilters = [];
+        $(`.shop-grid .shop-product`).removeClass("filter-hide-type");
+
+        // Get all active filter sizes
+        for (let i = 1; i <= filterTypeCount; i++) {
+            if ($(`#filter-type li:nth-child(${i})`).hasClass("active")) {
+                activeTypeFilters.push($(`#filter-type li:nth-child(${i}) p`).html().toLowerCase());
+            }
+        }
+
+        // hide product if at least one size doesn't match active size filter
+        for (let i = 1; i <= shopSize; i++) {
+            if (activeTypeFilters.length > 0) {
+                let productType = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-type").toLowerCase();
+                if (!activeTypeFilters.includes(productType)) {
+                    $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-type");
+                }
+            }
+        }
+
+    }
 
 
+    if (filterType === "price") {
+        if ($("#filter-price-min").val() === "" || $("#filter-price-max").val() === "") {
+            alert("Please enter a valid price to filter")
+        } else {
+            const priceMin = $("#filter-price-min").val();
+            const priceMax = $("#filter-price-max").val();
 
 
+            // hide product if at least one size doesn't match active size filter
+            for (let i = 1; i <= shopSize; i++) {
+                let productPrice = parseInt($(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-price"));
+                if (productPrice < priceMin || productPrice > priceMax) {
+                    $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-price");
+                }
+            }
+        }
+    }
 
-
+}
 
 
 // PRODUCTS UI
@@ -144,4 +186,4 @@ $(document).on("click", ".product-info .product-quant .quant-plus", function () 
 
 $(".notify-cart .my-button-alt").click(() => {
     $(".notify-cart").removeClass("open")
-})
+});
