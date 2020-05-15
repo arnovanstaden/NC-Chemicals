@@ -96,6 +96,14 @@
         text-align: center;
     }
 
+    .cart-item-name a {
+        font-size: 1.4rem;
+    }
+
+    .cart-item-name p {
+        font-size: 1rem;
+    }
+
     form .row .form-element:nth-child(2) {
         border-left: var(--shop-border);
     }

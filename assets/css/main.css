@@ -464,7 +464,7 @@ footer a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
+    z-index: 200
 }
 
 .spinner {
@@ -731,9 +731,94 @@ footer a:hover {
 }
 
 .filter-hide-category,
-.filter-hide-size {
+.filter-hide-size,
+.filter-hide-price {
     display: none;
 }
+
+
+/* Filter Price Slider*/
+
+input[type=range] {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+    padding: 0 2px;
+    /* Add some L/R padding to ensure box shadow of handle is shown */
+    overflow: hidden;
+    border: 0;
+    border-radius: 1px;
+    outline: none;
+    background: linear-gradient(grey, grey) no-repeat center;
+    /* Use a linear gradient to generate only the 2px height background */
+    background-size: 100% 2px;
+    pointer-events: none;
+    width: auto;
+}
+
+input[type=range]:active,
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background-color: var(--light-blue);
+    position: relative;
+    margin: 5px 0;
+    /*Addsomemargintoensureboxshadowisshown*/
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: all;
+    box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+input[type=range]::-webkit-slider-thumb::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 13px;
+    left: 100%;
+    width: 2000px;
+    height: 2px;
+}
+
+.multi-range {
+    position: relative;
+    height: 50px;
+    margin-left: 5%;
+}
+
+.multi-range input[type=range] {
+    position: absolute;
+
+}
+
+.multi-range input[type=range]:nth-child(1)::-webkit-slider-thumb::before {
+    background-color: purple;
+}
+
+.multi-range input[type=range]:nth-child(2) {
+    background: none;
+}
+
+.multi-range input[type=range]:nth-child(2)::-webkit-slider-thumb::before {
+    background-color: grey;
+}
+
+.price-labels p {
+    font-weight: 500;
+}
+
 
 
 
@@ -1139,6 +1224,7 @@ footer a:hover {
     align-items: center;
     padding: 1.5rem 0;
     flex-wrap: wrap;
+    border-bottom: var(--shop-border);
 }
 
 .cart-item>div {
@@ -1179,10 +1265,9 @@ footer a:hover {
 .cart-item-name p {
     text-transform: uppercase;
     color: var(--medium-grey);
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 1px;
-    font-size: 0.7rem;
-    margin-top: 5px;
+    font-size: 0.8rem;
 }
 
 .cart-item-quant .product-quant {
@@ -1342,23 +1427,35 @@ input[type=number] {
     display: none;
 }
 
+.cart-payment img {
+    max-width: 100px;
+}
+
 .payment-message {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    padding: 4rem 0;
+    padding: 4rem 2rem;
 }
 
 .payment-message h3 {
-    font-family: "Oswald";
+    font-family: "Roboto";
 }
 
 .payment-message p {
     color: var(--dark-grey);
     font-size: 0.9rem;
     margin-top: 1rem;
+    text-align: center;
+}
 
+.payment-message p span {
+    font-weight: 600;
+}
+
+.payment-message button {
+    margin-top: 1.5rem;
 }
 
 .payment-message button {

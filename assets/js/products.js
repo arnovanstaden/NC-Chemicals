@@ -10,7 +10,7 @@ const loadShopProducts = () => {
                 priceKeys = Object.keys(product.prices)
                 $(".shop-grid .row").append(
                     `
-                <a class="shop-product col-sm-6 col-md-4 col-lg-4" href="./product.html#${product.code}" data-product-category="${product.category}" data-product-sizes="${priceKeys}"
+                <a class="shop-product col-sm-6 col-md-4 col-lg-4" href="./product.html#${product.code}" data-product-category="${product.category}" data-product-sizes="${priceKeys}" data-product-price="${product.prices[priceKeys[0]]}"
                 ">
                     <img class="shop-product-image" src="./assets/images/products/t1.png " alt="">
                     <h5 class="shop-product-name">
@@ -23,6 +23,8 @@ const loadShopProducts = () => {
             `
                 )
             });
+            hideLoader();
+            loadFilterPrice();
         })
         .catch(err => console.log(err));
 }
@@ -65,8 +67,52 @@ const loadProduct = () => {
             } else {
                 location.replace("./shop.html")
             }
+
+            hideLoader()
         });
 }
+
+// Load Search
+// const loadNavSearch = () => {
+//     // Get Search Term
+//     let searchTerm = window.location.href;
+//     if (searchTerm.includes("?") > 0) {
+//         searchTerm = searchTerm.slice(searchTerm.indexOf("?") + 1).toLocaleLowerCase();
+//     } else {
+//         searchTerm = null;
+//     }
+
+//     // {Find products who's product tags match ~ searchterm}
+//     if (searchTerm !== null) {
+//         let shopSize = $(".shop-grid .shop-product").length;
+//         let resultsCount = 0;
+//         // Loop through every product to & hide non-results
+//         for (i = 1; i <= shopSize; i++) {
+
+//             const productTags = $(`.shop-product-grid a:nth-child(${i}) template`).attr("data-product-tags").toLowerCase();
+//             // Load Results
+//             if (!productTags.includes(searchTerm)) {
+//                 $(`.shop-product-grid a:nth-child(${i})`).addClass("filter-hide-search")
+//             } else {
+//                 resultsCount++
+//             }
+//         }
+//         // Check for no results
+//         if (resultsCount == 0) {
+//             $(`.shop-product-grid`).hide()
+//             $(`.shop-products-noresults`).fadeIn()
+//         }
+//     }
+
+
+//     // (Insert searchterm in filters)
+//     if (searchTerm != null) {
+//         $(".card-search").css("display", "flex");
+//         $(".card-search input").val(`-  "${searchTerm}"`);
+//     } else {
+//         $(".card-search").hide();
+//     }
+// }
 
 // PRODUCT UTILS
 
@@ -121,26 +167,6 @@ const filterProducts = (filterType) => {
         }
 
     }
-
-
-    if (filterType === "price") {
-        if ($("#filter-price-min").val() === "" || $("#filter-price-max").val() === "") {
-            alert("Please enter a valid price to filter")
-        } else {
-            const priceMin = $("#filter-price-min").val();
-            const priceMax = $("#filter-price-max").val();
-
-
-            // hide product if at least one size doesn't match active size filter
-            for (let i = 1; i <= shopSize; i++) {
-                let productPrice = parseInt($(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-price"));
-                if (productPrice < priceMin || productPrice > priceMax) {
-                    $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-price");
-                }
-            }
-        }
-    }
-
 }
 
 
@@ -150,7 +176,7 @@ const filterProducts = (filterType) => {
 // Toggle Product Size & Price
 $(document).on("click", ".product-sizes span", function () {
 
-    // Toggle Product Size CLass
+    // Toggle Product Size Class
     $(".product-sizes span").removeClass("active");
     $(this).addClass("active");
 
@@ -187,3 +213,58 @@ $(document).on("click", ".product-info .product-quant .quant-plus", function () 
 $(".notify-cart .my-button-alt").click(() => {
     $(".notify-cart").removeClass("open")
 });
+
+
+// Shop price filter
+
+const loadFilterPrice = () => {
+    // Get min max
+    let shopSize = $(".shop-grid .shop-product").length;
+    let minPrice = 0;
+    let maxPrice = 0;
+    let currentPrice = 0;
+    let priceRange = [];
+
+    for (i = 1; i <= shopSize; i++) {
+        currentPrice = parseInt($(`.shop-grid .row .shop-product:nth-child(${i})`).attr("data-product-price"));
+        priceRange.push(currentPrice);
+        priceRange.sort(function (a, b) {
+            return a - b
+        });
+    }
+
+    minPrice = priceRange[0];
+    maxPrice = priceRange[priceRange.length - 1];
+    $(".price-filter-min").attr("min", minPrice);
+    $(".price-filter-min").attr("max", maxPrice);
+    $(".price-filter-max").attr("min", minPrice);
+    $(".price-filter-max").attr("max", maxPrice);
+    $(".price-filter-min").val(minPrice);
+    $(".price-filter-max").val(maxPrice);
+
+    $(".minPriceLabel").html(`R ${minPrice}`);
+    $(".maxPriceLabel").html(`R ${maxPrice}`);
+
+}
+
+$(".price-filter-min, .price-filter-max").change(function () {
+    console.log($(this).val());
+    minPrice = $(".price-filter-min").val();
+    maxPrice = $(".price-filter-max").val();
+    $(".minPriceLabel").html(`R ${minPrice}`);
+    $(".maxPriceLabel").html(`R ${maxPrice}`);
+    adjustFilterPrice(minPrice, maxPrice);
+});
+
+const adjustFilterPrice = (minPrice, maxPrice) => {
+    let shopSize = $(".shop-grid .shop-product").length;
+    for (i = 1; i <= shopSize; i++) {
+        currentPriceToFilter = parseInt($(`.shop-grid .row .shop-product:nth-child(${i})`).attr("data-product-price"));
+        console.log(currentPriceToFilter)
+        if (currentPriceToFilter > maxPrice || currentPriceToFilter < minPrice) {
+            $(`.shop-grid .row .shop-product:nth-child(${i})`).addClass("filter-hide-price")
+        } else {
+            $(`.shop-grid .row .shop-product:nth-child(${i})`).removeClass("filter-hide-price")
+        }
+    }
+}

@@ -1,6 +1,6 @@
 // Handling any cart related logic
 
-const deliveryFee = 180;
+const deliveryFee = 0;
 
 // CART UI
 
@@ -107,12 +107,12 @@ $(document).on("click", ".cart-item-remove i", function () {
 
 const notifyCart = (inCartAlready, product) => {
     $(".notify-cart").addClass("open");
-    if (inCartAlready) {
-        $(".notify-cart h4").html("This product is already in your cart")
+    console.log(inCartAlready, product)
+    if (!inCartAlready) {
+        $(".notify-cart h4").html(`${$(".product-name").html()} -  ${$(".product-sizes span.active").html()} has been added to your cart`)
     } else {
-        $(".notify-cart h4 span").html($(".product-name").html())
+        $(".notify-cart h4").html("This product is already in your cart")
     }
-
 }
 
 const validateCartForm = () => {
@@ -135,7 +135,8 @@ const checkCartEmpty = () => {
     currentCart = JSON.parse(localStorage.getItem("cart"));
     if (currentCart === null || currentCart.length < 1) {
         $(".section-cart").hide();
-        $(".section-empty-cart").addClass("active")
+        $(".section-empty-cart").addClass("active");
+        hideLoader();
         return true
     }
 }
@@ -163,20 +164,22 @@ const showCart = () => {
 
 // Update Cart Quanity
 const updateCartQuantity = () => {
-    // let currentCart = JSON.parse(localStorage.getItem("cart"));
-    // let productCode;
-    // let productQuant;
-    // const cartSize = $(".cart-checkout-grid .cart-item").length;
-    // for (let i = 1; i <= cartSize; i++) {
-    //     productCode = $(`#cart-item-${i}`).attr("data-product-code");
-    //     productQuant = $(`#cart-item-${i} .product-quant span`).html();
-    //     currentCart.forEach(cartItem => {
-    //         if (cartItem.code === productCode) {
-    //             cartItem.quantity = productQuant
-    //         }
-    //     });
-    // }
-    // localStorage.setItem("cart", JSON.stringify(currentCart));
+    let currentCart = JSON.parse(localStorage.getItem("cart"));
+    let productCode;
+    let productQuant;
+    let produtSize;
+    const cartSize = $(".cart-checkout-grid .cart-item").length;
+    for (let i = 1; i <= cartSize; i++) {
+        productCode = $(`#cart-item-${i}`).attr("data-product-code");
+        productSize = $(`#cart-item-${i}`).attr("data-product-size");
+        productQuant = $(`#cart-item-${i} .product-quant span`).html();
+        currentCart.forEach(cartItem => {
+            if (cartItem.code === productCode && cartItem.size === productSize) {
+                cartItem.quantity = productQuant
+            }
+        });
+    }
+    localStorage.setItem("cart", JSON.stringify(currentCart));
 }
 
 // Update Cart Count
@@ -211,12 +214,13 @@ const addToCart = () => {
         notifyCart(false, product);
     } else {
         currentCart = JSON.parse(currentCart);
-        if (checkIfItemInCart(product) === true) {
+        if (checkIfItemInCart(product)) {
             notifyCart(true, product);
         } else {
+            notifyCart(false, product);
             currentCart.push(product);
             localStorage.setItem("cart", JSON.stringify(currentCart));
-            notifyCart(false, product);
+
         }
 
     }
@@ -225,13 +229,17 @@ const addToCart = () => {
 
 const checkIfItemInCart = (product) => {
     // Check if Item already in cart
+    console.log(product)
     currentCart = JSON.parse(localStorage.getItem("cart"));
     let inCart = false;
     currentCart.forEach(cartItem => {
         if (cartItem.code === product.code && cartItem.size === product.size) {
+            console.log(cartItem.code);
+            console.log(cartItem.size);
             inCart = true
         }
     });
+    console.log(inCart)
     return inCart
 }
 
@@ -249,6 +257,8 @@ const removeCartItem = (code) => {
     for (let i = 1; i <= cartSize; i++) {
         $(`.cart-checkout-grid .cart-item:nth-child(${i}`).attr("id", `cart-item-${i}`)
     }
+    calculateCartTotal();
+
 }
 
 const loadCart = () => {
@@ -272,12 +282,13 @@ const loadCart = () => {
                     count++;
                     $(".cart-checkout-grid").append(
                         `
-                        <div class="col-lg-10 col-md-12 offset-lg-1 cart-item" id="cart-item-${count}" data-product-code="${product.code}">
+                        <div class="col-lg-10 col-md-12 offset-lg-1 cart-item" id="cart-item-${count}" data-product-code="${product.code}" data-product-size="${currentCart[count-1].size}">
                             <div class="col-md-1  cart-item-image">
                             <img src="${product.productThumbnailUrl}" class="img-fluid" alt="">
                             </div>
                             <div class="col-md-4 col-lg-3 cart-item-name">
                             <a target="blank" href="./product.html#${product.code}">${product.name}</a>
+                            <p> ${currentCart[count-1].size} </p>
                             </div>
                             <div class="col-md-2 col-sm-4 col-6  cart-item-price">
                                 <p>R <span>${product.prices[currentCart[count-1].size]}</span>.00</p>
@@ -296,7 +307,6 @@ const loadCart = () => {
                                 <i class="fal fa-times"></i>
                             </div>
                         </div>
-                        <div class="cart-item-divider"></div>
                         `
                     )
                 })

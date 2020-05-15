@@ -229,8 +229,19 @@
                                         </h6>
                                     </div>
 
-                                    <div id="collapsePrice" class="collapse" data-parent="#accordion">
-                                        <div class="card-body card-filter-price">
+                                    <div id="collapsePrice" class="collapse show" data-parent="#accordion">
+                                        <div class="card-body mb-3 card-filter-price justify-content-center">
+                                            <span class="multi-range">
+                                                <input type="range" id="lower" class="price-filter-min">
+                                                <input type="range" id="upper" class="price-filter-max">
+                                            </span>
+
+                                        </div>
+                                        <div class="card-body mb-3">
+                                            <div class="price-labels d-flex justify-content-between">
+                                                <p class="minPriceLabel"></p>
+                                                <p class="maxPriceLabel"></p>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -245,16 +256,6 @@
                             <div class="row">
 
                                 <!-- Products Inserted Here -->
-
-                                <!-- <a class="shop-product col-md-4" href="./product.html#" data-product-sizes="5L,25L"
-                                    data-product-category="Household">
-                                    <img class="shop-product-image" src="./assets/images/products/t1.png " alt="">
-                                    <h5 class="shop-product-name">
-                                        Air Freshener
-                                    </h5>
-                                    <p class="shop-product-price">R 120</p>
-                                </a> -->
-
 
                             </div>
                         </div>

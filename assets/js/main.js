@@ -1,6 +1,6 @@
 // GENERAL
-const api_url = "http://localhost:3000";
-// const api_url = "https://nc-chemicals-backend.herokuapp.com/";
+// const api_url = "http://localhost:3000";
+const api_url = "https://nc-chemicals-backend.herokuapp.com";
 
 // Navbar 
 
@@ -24,8 +24,20 @@ $(".nav-menu .nav-search").click(() => {
 $(".search-inner, .search-close").click(() => {
     $(".search-modal").toggleClass("open");
     $("html").toggleClass("disabled")
+});
 
-})
+$(".search-bar").on("submit", function (event) {
+    event.preventDefault();
+    navSearch();
+});
+
+const navSearch = () => {
+    const searchTerm = $(".search-bar input").val();
+    console.log("search :" + searchTerm)
+    location.replace(`./winkel.html?${searchTerm}`);
+}
+
+
 
 // Loader
 
@@ -48,6 +60,48 @@ $(".card-filter-check li").click(function () {
 $("#shop-settings-sort").click(() => {
     $("#shop-settings-sort-dropdown").toggleClass("open")
 });
+
+
+
+// Price Slider Init
+if (window.location.pathname === "/shop.html") {
+    var lowerSlider = document.querySelector('#lower'),
+        upperSlider = document.querySelector('#upper'),
+        lowerVal = parseInt(lowerSlider.value);
+    upperVal = parseInt(upperSlider.value);
+
+    upperSlider.oninput = function () {
+        lowerVal = parseInt(lowerSlider.value);
+        upperVal = parseInt(upperSlider.value);
+
+        if (upperVal < lowerVal + 4) {
+            lowerSlider.value = upperVal - 4;
+
+            if (lowerVal == lowerSlider.min) {
+                upperSlider.value = 4;
+            }
+        }
+    };
+
+    lowerSlider.oninput = function () {
+        lowerVal = parseInt(lowerSlider.value);
+        upperVal = parseInt(upperSlider.value);
+
+        if (lowerVal > upperVal - 4) {
+            upperSlider.value = lowerVal + 4;
+
+            if (upperVal == upperSlider.max) {
+                lowerSlider.value = parseInt(upperSlider.max) - 4;
+            }
+
+        }
+    };
+
+    const rangeWidth = $(".card").width();
+    $(".multi-range input[type=range]").width(rangeWidth * 0.80)
+}
+
+
 
 
 // SHOP FILTERS
