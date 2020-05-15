@@ -25,6 +25,7 @@ const loadShopProducts = () => {
             });
             hideLoader();
             loadFilterPrice();
+            loadNavSearch();
         })
         .catch(err => console.log(err));
 }

@@ -3,10 +3,6 @@ const api_url = "https://nc-chemicals-backend.herokuapp.com";
 // GENERAL
 $(document).ready(() => {
     updateCartCount();
-
-    if (window.location.pathname === "/shop.html") {
-        loadNavSearch();
-    }
 })
 
 // Navbar 
@@ -37,8 +33,13 @@ $(".search-inner, .search-close").click(() => {
 });
 
 $(".search-modal button").click(function () {
+    event.preventDefault()
     navSearch();
 });
+
+$("#search-card .card-body i").click(() => {
+    location.replace("./shop.html")
+})
 
 const navSearch = () => {
     const searchTerm = $(".search-content input").val();
@@ -54,15 +55,14 @@ const loadNavSearch = () => {
     } else {
         searchTerm = null;
     }
-
     // {Find products who's name matches ~ searchterm}
     if (searchTerm !== null) {
         let shopSize = $(".shop-grid .shop-product").length;
         let resultsCount = 0;
         // Loop through every product to & hide non-results
         for (i = 1; i <= shopSize; i++) {
-            const productName = $(`.shop-grid .shop-product:nth-child(${i}) .shop-product-name`).html();
-            console.log(productName)
+            const productName = $(`.shop-grid .shop-product:nth-child(${i}) .shop-product-name`).html().toLowerCase();
+            console.log(productName);
             // Load Results
             if (!productName.includes(searchTerm)) {
                 $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-search")
@@ -76,12 +76,10 @@ const loadNavSearch = () => {
             $(`.shop-noresults`).addClass("show")
         }
     }
-
-
     // (Insert searchterm in filters)
-    if (searchTerm != null) {
-        $(".card-search").css("display", "flex");
-        $(".card-search input").val(`-  "${searchTerm}"`);
+    if (searchTerm !== null) {
+        $("#search-card").css("display", "block");
+        $("#search-card .card-body p").html(`-  "${searchTerm}"`);
     } else {
         $(".card-search").hide();
     }
@@ -140,11 +138,18 @@ const filterProducts = (filterType) => {
             }
         }
 
-        // hide product if at least one size doesn't match active size filter
-        for (let i = 1; i <= shopSize; i++) {
-            if (activeCategoryFilters.length > 0) {
-                let productCategories = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-category").toLowerCase().split(",");
-                if (!activeCategoryFilters.includes(productCategory)) {
+        // hide product if at least one size doesn't match active filter
+        if (activeCategoryFilters.length > 0) {
+            for (let i = 1; i <= shopSize; i++) {
+                let matching = [];
+                let productCategory = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-category").toLowerCase();
+                console.log(productCategory)
+                for (j = 0; j < activeCategoryFilters.length; j++) {
+                    if (productCategory.includes(activeCategoryFilters[j])) {
+                        matching.push(activeCategoryFilters[j]);
+                    }
+                }
+                if (matching.length < 1) {
                     $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-category");
                 }
             }
@@ -163,17 +168,20 @@ const filterProducts = (filterType) => {
                 activeSizeFilters.push($(`#card-filter-size li:nth-child(${i}) p`).html());
             }
         }
-        console.log(activeSizeFilters)
 
-        // hide product if at least one size doesn't match active size filter
-        for (let i = 1; i <= shopSize; i++) {
-            if (activeSizeFilters.length > 0) {
+        // hide product if at least one size doesn't match active filter
+        if (activeSizeFilters.length > 0) {
+            for (let i = 1; i <= shopSize; i++) {
+                let matching = [];
                 let productSizes = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-sizes");
                 console.log(productSizes)
                 for (j = 0; j < activeSizeFilters.length; j++) {
-                    if (!productSizes.includes(activeSizeFilters[j])) {
-                        $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-size");
+                    if (productSizes.includes(activeSizeFilters[j])) {
+                        matching.push(activeSizeFilters[j]);
                     }
+                }
+                if (matching.length < 1) {
+                    $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-size");
                 }
             }
         }
@@ -214,7 +222,7 @@ if (window.location.pathname === "/shop.html") {
         }
     };
 
-    const rangeWidth = $(".card").width();
+    const rangeWidth = $(".shop-filter").width();
     $(".multi-range input[type=range]").width(rangeWidth * 0.80)
 }
 
