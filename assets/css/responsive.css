@@ -81,6 +81,10 @@
         display: none;
     }
 
+    .shop-noresults {
+        padding: 4rem 1rem;
+    }
+
 
 
     /* CART PAGE */
@@ -134,6 +138,7 @@
     .shop-product {
         border-right: 0;
         text-align: center;
+        padding: 3rem 1rem;
     }
 
     .shop-product-image {

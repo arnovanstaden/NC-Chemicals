@@ -17,7 +17,7 @@ const loadShopProducts = () => {
                         ${product.name}
                     </h5>
                     <p class="shop-product-price">
-                        R ${product.prices[priceKeys[0]]}
+                        R ${product.prices[priceKeys[0]]} - R ${product.prices[priceKeys[priceKeys.length-1]]}
                     </p>
                 </a>
             `
@@ -72,102 +72,6 @@ const loadProduct = () => {
         });
 }
 
-// Load Search
-// const loadNavSearch = () => {
-//     // Get Search Term
-//     let searchTerm = window.location.href;
-//     if (searchTerm.includes("?") > 0) {
-//         searchTerm = searchTerm.slice(searchTerm.indexOf("?") + 1).toLocaleLowerCase();
-//     } else {
-//         searchTerm = null;
-//     }
-
-//     // {Find products who's product tags match ~ searchterm}
-//     if (searchTerm !== null) {
-//         let shopSize = $(".shop-grid .shop-product").length;
-//         let resultsCount = 0;
-//         // Loop through every product to & hide non-results
-//         for (i = 1; i <= shopSize; i++) {
-
-//             const productTags = $(`.shop-product-grid a:nth-child(${i}) template`).attr("data-product-tags").toLowerCase();
-//             // Load Results
-//             if (!productTags.includes(searchTerm)) {
-//                 $(`.shop-product-grid a:nth-child(${i})`).addClass("filter-hide-search")
-//             } else {
-//                 resultsCount++
-//             }
-//         }
-//         // Check for no results
-//         if (resultsCount == 0) {
-//             $(`.shop-product-grid`).hide()
-//             $(`.shop-products-noresults`).fadeIn()
-//         }
-//     }
-
-
-//     // (Insert searchterm in filters)
-//     if (searchTerm != null) {
-//         $(".card-search").css("display", "flex");
-//         $(".card-search input").val(`-  "${searchTerm}"`);
-//     } else {
-//         $(".card-search").hide();
-//     }
-// }
-
-// PRODUCT UTILS
-
-// Filter products
-const filterProducts = (filterType) => {
-    let shopSize = $(".shop-grid .shop-product").length;
-
-    if (filterType === "brand") {
-        let filterBrandCount = $("#filter-brand li").length
-        let activeBrandFilters = [];
-        $(`.shop-grid .shop-product`).removeClass("filter-hide-brand");
-
-        // Get all active filter sizes
-        for (let i = 1; i <= filterBrandCount; i++) {
-            if ($(`#filter-brand li:nth-child(${i})`).hasClass("active")) {
-                activeBrandFilters.push($(`#filter-brand li:nth-child(${i}) p`).html().toLowerCase());
-            }
-        }
-
-        // hide product if at least one size doesn't match active size filter
-        for (let i = 1; i <= shopSize; i++) {
-            if (activeBrandFilters.length > 0) {
-                let productBrand = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-brand").toLowerCase()
-                if (!activeBrandFilters.includes(productBrand)) {
-                    $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-brand");
-                }
-            }
-        }
-    }
-
-
-    if (filterType === "type") {
-        let filterTypeCount = $("#filter-type li").length
-        let activeTypeFilters = [];
-        $(`.shop-grid .shop-product`).removeClass("filter-hide-type");
-
-        // Get all active filter sizes
-        for (let i = 1; i <= filterTypeCount; i++) {
-            if ($(`#filter-type li:nth-child(${i})`).hasClass("active")) {
-                activeTypeFilters.push($(`#filter-type li:nth-child(${i}) p`).html().toLowerCase());
-            }
-        }
-
-        // hide product if at least one size doesn't match active size filter
-        for (let i = 1; i <= shopSize; i++) {
-            if (activeTypeFilters.length > 0) {
-                let productType = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-type").toLowerCase();
-                if (!activeTypeFilters.includes(productType)) {
-                    $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-type");
-                }
-            }
-        }
-
-    }
-}
 
 
 // PRODUCTS UI
@@ -213,58 +117,3 @@ $(document).on("click", ".product-info .product-quant .quant-plus", function () 
 $(".notify-cart .my-button-alt").click(() => {
     $(".notify-cart").removeClass("open")
 });
-
-
-// Shop price filter
-
-const loadFilterPrice = () => {
-    // Get min max
-    let shopSize = $(".shop-grid .shop-product").length;
-    let minPrice = 0;
-    let maxPrice = 0;
-    let currentPrice = 0;
-    let priceRange = [];
-
-    for (i = 1; i <= shopSize; i++) {
-        currentPrice = parseInt($(`.shop-grid .row .shop-product:nth-child(${i})`).attr("data-product-price"));
-        priceRange.push(currentPrice);
-        priceRange.sort(function (a, b) {
-            return a - b
-        });
-    }
-
-    minPrice = priceRange[0];
-    maxPrice = priceRange[priceRange.length - 1];
-    $(".price-filter-min").attr("min", minPrice);
-    $(".price-filter-min").attr("max", maxPrice);
-    $(".price-filter-max").attr("min", minPrice);
-    $(".price-filter-max").attr("max", maxPrice);
-    $(".price-filter-min").val(minPrice);
-    $(".price-filter-max").val(maxPrice);
-
-    $(".minPriceLabel").html(`R ${minPrice}`);
-    $(".maxPriceLabel").html(`R ${maxPrice}`);
-
-}
-
-$(".price-filter-min, .price-filter-max").change(function () {
-    console.log($(this).val());
-    minPrice = $(".price-filter-min").val();
-    maxPrice = $(".price-filter-max").val();
-    $(".minPriceLabel").html(`R ${minPrice}`);
-    $(".maxPriceLabel").html(`R ${maxPrice}`);
-    adjustFilterPrice(minPrice, maxPrice);
-});
-
-const adjustFilterPrice = (minPrice, maxPrice) => {
-    let shopSize = $(".shop-grid .shop-product").length;
-    for (i = 1; i <= shopSize; i++) {
-        currentPriceToFilter = parseInt($(`.shop-grid .row .shop-product:nth-child(${i})`).attr("data-product-price"));
-        console.log(currentPriceToFilter)
-        if (currentPriceToFilter > maxPrice || currentPriceToFilter < minPrice) {
-            $(`.shop-grid .row .shop-product:nth-child(${i})`).addClass("filter-hide-price")
-        } else {
-            $(`.shop-grid .row .shop-product:nth-child(${i})`).removeClass("filter-hide-price")
-        }
-    }
-}
