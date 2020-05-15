@@ -62,7 +62,6 @@ const loadNavSearch = () => {
         // Loop through every product to & hide non-results
         for (i = 1; i <= shopSize; i++) {
             const productName = $(`.shop-grid .shop-product:nth-child(${i}) .shop-product-name`).html().toLowerCase();
-            console.log(productName);
             // Load Results
             if (!productName.includes(searchTerm)) {
                 $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-search")
@@ -123,7 +122,6 @@ $(".card-filter-check li").click(function () {
 
 const filterProducts = (filterType) => {
     let shopSize = $(".shop-grid .shop-product").length;
-    console.log(filterType)
 
     if (filterType === "category") {
         let filterCategoryCount = $("#card-filter-categories li").length
@@ -134,7 +132,6 @@ const filterProducts = (filterType) => {
         for (let i = 1; i <= filterCategoryCount; i++) {
             if ($(`#card-filter-categories li:nth-child(${i})`).hasClass("active")) {
                 activeCategoryFilters.push($(`#card-filter-categories li:nth-child(${i}) p`).html().toLowerCase());
-                console.log(activeCategoryFilters)
             }
         }
 
@@ -143,7 +140,6 @@ const filterProducts = (filterType) => {
             for (let i = 1; i <= shopSize; i++) {
                 let matching = [];
                 let productCategory = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-category").toLowerCase();
-                console.log(productCategory)
                 for (j = 0; j < activeCategoryFilters.length; j++) {
                     if (productCategory.includes(activeCategoryFilters[j])) {
                         matching.push(activeCategoryFilters[j]);
@@ -174,7 +170,6 @@ const filterProducts = (filterType) => {
             for (let i = 1; i <= shopSize; i++) {
                 let matching = [];
                 let productSizes = $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-sizes");
-                console.log(productSizes)
                 for (j = 0; j < activeSizeFilters.length; j++) {
                     if (productSizes.includes(activeSizeFilters[j])) {
                         matching.push(activeSizeFilters[j]);
@@ -259,7 +254,6 @@ const loadFilterPrice = () => {
 }
 
 $(".price-filter-min, .price-filter-max").change(function () {
-    console.log($(this).val());
     minPrice = $(".price-filter-min").val();
     maxPrice = $(".price-filter-max").val();
     $(".minPriceLabel").html(`R ${minPrice}`);
@@ -271,7 +265,6 @@ const adjustFilterPrice = (minPrice, maxPrice) => {
     let shopSize = $(".shop-grid .shop-product").length;
     for (i = 1; i <= shopSize; i++) {
         currentPriceToFilter = parseInt($(`.shop-grid .row .shop-product:nth-child(${i})`).attr("data-product-price"));
-        console.log(currentPriceToFilter)
         if (currentPriceToFilter > maxPrice || currentPriceToFilter < minPrice) {
             $(`.shop-grid .row .shop-product:nth-child(${i})`).addClass("filter-hide-price")
         } else {

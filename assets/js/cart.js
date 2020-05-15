@@ -107,7 +107,6 @@ $(document).on("click", ".cart-item-remove i", function () {
 
 const notifyCart = (inCartAlready, product) => {
     $(".notify-cart").addClass("open");
-    console.log(inCartAlready, product)
     if (!inCartAlready) {
         $(".notify-cart h4").html(`${$(".product-name").html()} -  ${$(".product-sizes span.active").html()} has been added to your cart`)
     } else {
@@ -228,8 +227,6 @@ const addToCart = () => {
 }
 
 const checkIfItemInCart = (product) => {
-    // Check if Item already in cart
-    console.log(product)
     currentCart = JSON.parse(localStorage.getItem("cart"));
     let inCart = false;
     currentCart.forEach(cartItem => {
@@ -239,7 +236,7 @@ const checkIfItemInCart = (product) => {
             inCart = true
         }
     });
-    console.log(inCart)
+
     return inCart
 }
 
@@ -269,47 +266,58 @@ const loadCart = () => {
         currentCart.forEach(item => {
             productCodes.push(item.code)
         });
-        console.log(productCodes)
+
+
 
         axios.get(`${api_url}/products`)
             .then(response => {
                 products = response.data;
 
+
                 let count = 0;
                 productCodes.forEach(code => {
                     let productFound = products.find(product => product.code === code);
-                    product = products[products.indexOf(productFound)]
-                    count++;
-                    $(".cart-checkout-grid").append(
-                        `
-                        <div class="col-lg-10 col-md-12 offset-lg-1 cart-item" id="cart-item-${count}" data-product-code="${product.code}" data-product-size="${currentCart[count-1].size}">
-                            <div class="col-md-1  cart-item-image">
-                            <img src="${product.productThumbnailUrl}" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 col-lg-3 cart-item-name">
-                            <a target="blank" href="./product.html#${product.code}">${product.name}</a>
-                            <p> ${currentCart[count-1].size} </p>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-6  cart-item-price">
-                                <p>R <span>${product.prices[currentCart[count-1].size]}</span>.00</p>
-                            </div>
-                            <div class="col-md-3 col-sm-4 col-6 cart-item-quant">
-                                <div class="product-quant">
-                                    <i class="far fa-minus quant-minus"></i>
-                                    <span>${currentCart[count-1].quantity}</span>
-                                    <i class="far fa-plus quant-plus"></i>
+                    if (productFound !== undefined) {
+                        product = products[products.indexOf(productFound)]
+                        count++;
+                        $(".cart-checkout-grid").append(
+                            `
+                            <div class="col-lg-10 col-md-12 offset-lg-1 cart-item" id="cart-item-${count}" data-product-code="${product.code}" data-product-size="${currentCart[count-1].size}">
+                                <div class="col-md-1  cart-item-image">
+                                <img src="${product.productThumbnailUrl}" class="img-fluid" alt="">
+                                </div>
+                                <div class="col-md-4 col-lg-3 cart-item-name">
+                                <a target="blank" href="./product.html#${product.code}">${product.name}</a>
+                                <p> ${currentCart[count-1].size} </p>
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-6  cart-item-price">
+                                    <p>R <span>${product.prices[currentCart[count-1].size]}</span>.00</p>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-6 cart-item-quant">
+                                    <div class="product-quant">
+                                        <i class="far fa-minus quant-minus"></i>
+                                        <span>${currentCart[count-1].quantity}</span>
+                                        <i class="far fa-plus quant-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-12 cart-item-total">
+                                    <p>R <span>${product.prices[currentCart[count-1].size] * currentCart[count-1].quantity}</span>.00</p>
+                                </div>
+                                <div class="col-md-1 cart-item-remove">
+                                    <i class="fal fa-times"></i>
                                 </div>
                             </div>
-                            <div class="col-md-2 col-sm-4 col-12 cart-item-total">
-                                <p>R <span>${product.prices[currentCart[count-1].size] * currentCart[count-1].quantity}</span>.00</p>
-                            </div>
-                            <div class="col-md-1 cart-item-remove">
-                                <i class="fal fa-times"></i>
-                            </div>
-                        </div>
-                        `
-                    )
-                })
+                            `
+                        )
+                    } else {
+                        // Remove deleted product
+                        let deletedProduct = currentCart.find(item => item.code === code);
+                        currentCart.splice(currentCart.indexOf(deletedProduct), 1);
+                        localStorage.setItem("cart", JSON.stringify(currentCart));
+                        return loadCart()
+                    }
+
+                });
                 hideLoader()
                 calculateCartTotal();
                 $(".cart-checkout-total-delivery span").html(deliveryFee)
