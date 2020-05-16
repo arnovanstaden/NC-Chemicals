@@ -529,8 +529,114 @@ footer a:hover {
 
 /* HOME PAGE */
 
+/* Landing Section */
+.section-landing {
+    padding: 0;
+    z-index: 5;
+}
+
+.section-landing .container-fluid {
+    padding: 0;
+}
+
+/* Highlights */
+
+.section-highlights {
+    position: relative;
+    top: -3rem;
+    z-index: 100;
+}
+
+.section-highlights .row {
+    box-shadow: var(--container-show);
+}
+
+.highlight {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: white;
+    border-right: var(--shop-border);
+}
+
+.section-highlights .highlight:last-child {
+    border-right: none;
+}
+
+.highlight i {
+    color: var(--light-blue);
+    font-size: 2rem;
+}
+
+.highlight h2 {
+    color: var(--dark-blue);
+    font-family: "Oswald";
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin: 1.5rem 0 1rem;
+    text-transform: uppercase;
+}
+
+.highlight p {
+    color: var(--medium-grey);
+    font-weight: 400;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.highlight a {
+    display: flex;
+    margin-top: 1.5rem;
+    justify-content: center;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--light-blue);
+    font-weight: 500;
+    align-items: center;
+    transition: 0.4s ease;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -ms-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
+}
+
+.highlight a i {
+    line-height: 1;
+    display: block;
+    margin-left: 0.4rem;
+    color: white;
+    font-size: 0.6rem;
+    background-color: var(--light-blue);
+    padding: 2px 5px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: 0.4s ease;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -ms-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
+}
+
+.highlight a:hover {
+    color: var(--dark-blue);
+}
+
+.highlight a:hover i {
+    background-color: var(--dark-blue);
+}
+
+/* Info Sections */
 
 
+/* Product Section */
+
+.home-products .row {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
 
 
 /* -------------------------------------- */
