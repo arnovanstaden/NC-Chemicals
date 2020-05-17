@@ -632,6 +632,10 @@ footer a:hover {
 
 /* Info Sections */
 
+.section-info img {
+    width: 100%;
+}
+
 
 /* Product Section */
 

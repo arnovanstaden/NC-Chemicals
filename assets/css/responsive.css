@@ -49,6 +49,13 @@
         width: 40vw;
     }
 
+    /* HOME PAGE */
+
+    .section-highlights {
+        top: unset;
+        margin-top: 3rem;
+    }
+
     /* ABOUT PAGE */
 
 
@@ -130,6 +137,10 @@
 
     section .container {
         box-shadow: none !important;
+    }
+
+    .navbar-icon {
+        padding: 1.5rem 1rem;
     }
 
 
