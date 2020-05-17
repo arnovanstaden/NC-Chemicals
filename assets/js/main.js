@@ -110,7 +110,7 @@ $("#shop-settings-sort").click(() => {
 // Filter Check Boxes
 $(".card-filter-check li").click(function () {
     $(this).toggleClass("active");
-    $(this).find("i").toggle();
+    $(this).find("i").toggleClass("active");
 
     if ($(this).closest(".card-filter-check").attr("id") === "card-filter-categories") {
         filterProducts("category")
@@ -184,7 +184,7 @@ const filterProducts = (filterType) => {
 }
 
 // Price Slider Init
-if (window.location.pathname === "/shop.html") {
+const initPriceSlider = () => {
     var lowerSlider = document.querySelector('#lower'),
         upperSlider = document.querySelector('#upper'),
         lowerVal = parseInt(lowerSlider.value);
@@ -274,6 +274,36 @@ const adjustFilterPrice = (minPrice, maxPrice) => {
 }
 
 
+// remove Filters
+
+$(".card-header>i").click(function () {
+    let type = $(this).attr("id").replace("remove-", "");
+    removeFilter(type)
+});
+
+const removeFilter = (type) => {
+    switch (type) {
+        case "categories":
+            $("#card-filter-categories li").removeClass("active");
+            $("#card-filter-categories li i").removeClass("active");
+            $(".shop-product").removeClass("filter-hide-category")
+            break;
+        case "sizes": {
+            $("#card-filter-size li").removeClass("active");
+            $("#card-filter-size li i").removeClass("active");
+            $(".shop-product").removeClass("filter-hide-size")
+            break;
+        }
+        case "prices": {
+            loadFilterPrice();
+            $(".shop-product").removeClass("filter-hide-price")
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 
 
 
@@ -298,13 +328,13 @@ $("footer").html(
                     <h6>About Us</h6>
                     <ul>
                         <li>
-                            <a href="">Our Story</a>
+                            <a href="./about.html">Our Story</a>
                         </li>
                         <li>
-                            <a href="">Our Guarantee</a>
+                            <a href="./about.html">Our Guarantee</a>
                         </li>
                         <li>
-                            <a href="">Contact Us</a>
+                            <a href="./contact.html">Contact Us</a>
                         </li>
                     </ul>
                 </div>

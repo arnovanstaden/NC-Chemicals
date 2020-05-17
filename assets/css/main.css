@@ -551,7 +551,8 @@ footer a:hover {
     box-shadow: var(--container-show);
 }
 
-.highlight {
+.highlight,
+.home-product-intro {
     text-align: center;
     padding: 3rem 2rem;
     background-color: white;
@@ -628,16 +629,142 @@ footer a:hover {
     background-color: var(--dark-blue);
 }
 
+
 /* Info Sections */
 
 
 /* Product Section */
 
-.home-products .row {
-    flex-wrap: nowrap;
-    overflow-x: scroll;
+.home-products-grid {
+    box-shadow: var(--container-show);
 }
 
+.home-product-intro {
+    background-color: var(--dark-grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-product-intro i {
+    color: var(--light-blue);
+    font-size: 2rem;
+}
+
+.home-product-intro h2 {
+    color: white;
+    font-family: "Oswald";
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin: 1.5rem 0 1rem;
+    text-transform: uppercase;
+}
+
+.home-product-intro p {
+    color: var(--medium-grey);
+    font-weight: 400;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.home-product-intro a {
+    display: flex;
+    margin-top: 1.5rem;
+    justify-content: center;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--light-blue);
+    font-weight: 500;
+    align-items: center;
+    transition: 0.4s ease;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -ms-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
+}
+
+.home-product-intro a i {
+    line-height: 1;
+    display: block;
+    margin-left: 0.4rem;
+    color: white;
+    font-size: 0.6rem;
+    background-color: var(--light-blue);
+    padding: 2px 5px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: 0.4s ease;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -ms-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
+}
+
+.home-products-grid .shop-product {
+    border-top: var(--shop-border);
+}
+
+
+/* -------------------------------------- */
+/* ABOUT US */
+
+.section-about .container {
+    box-shadow: var(--container-show);
+}
+
+.about-text {
+    padding: 4rem 3rem;
+    border-bottom: var(--shop-border);
+}
+
+.about-text h3 {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.about-text .divider {
+    width: 5rem;
+    height: 3px;
+    background-color: var(--light-blue);
+    margin: 0.75rem 0 1rem 0;
+}
+
+.about-text p {
+    font-size: 0.9rem;
+    color: var(--dark-grey);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.section-about .about-text:nth-child(even) {
+    text-align: right;
+}
+
+.section-about .about-text:nth-child(even) .divider {
+    margin-left: auto;
+}
+
+.about-img {
+    background-position: center;
+    background-size: cover;
+}
+
+#about-img-1 {
+    background-image: url("../images/other/AdobeStock_182053504_Preview.jpeg");
+}
+
+#about-img-2 {
+    background-image: url("../images/other/AdobeStock_212325280_Preview.jpeg");
+
+}
+
+#about-img-3 {
+    background-image: url("../images/other/AdobeStock_328032245_Preview.jpeg");
+}
 
 /* -------------------------------------- */
 
@@ -845,6 +972,10 @@ footer a:hover {
     color: var(--light-blue);
     position: absolute;
     display: none;
+}
+
+.card-filter-check .custom-check i.active {
+    display: block;
 }
 
 .filter-hide-category,
