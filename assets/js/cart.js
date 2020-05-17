@@ -277,7 +277,7 @@ const loadCart = () => {
                 let count = 0;
                 productCodes.forEach(code => {
                     let productFound = products.find(product => product.code === code);
-                    if (productFound !== undefined) {
+                    if (productFound !== undefined && productFound.visibility) {
                         product = products[products.indexOf(productFound)]
                         count++;
                         $(".cart-checkout-grid").append(

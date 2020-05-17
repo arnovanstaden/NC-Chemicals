@@ -49,7 +49,7 @@ const loadProduct = () => {
         .then(response => {
             product = response.data;
 
-            if (product !== undefined) {
+            if (product !== undefined && product.visibility) {
                 // Insert Product Details
                 document.title = product.name;
                 $(".product-container").attr("data-product-code", product.code)
