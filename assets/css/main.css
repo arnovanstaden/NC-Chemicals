@@ -1881,16 +1881,16 @@ input[type=number] {
 }
 
 .contact-info>.row:nth-child(2) div:nth-child(1) {
-    border-right: var(--shop-border);
-    border-bottom: var(--shop-border);
+    border-right: var(--shop-border) !important;
+    border-bottom: var(--shop-border) !important;
 }
 
 .contact-info>.row:nth-child(2) div:nth-child(2) {
-    border-bottom: var(--shop-border);
+    border-bottom: var(--shop-border) !important;
 }
 
 .contact-info>.row:nth-child(2) div:nth-child(3) {
-    border-right: var(--shop-border);
+    border-right: var(--shop-border) !important;
 }
 
 .contact-form {
@@ -1929,10 +1929,6 @@ input[type=number] {
 .submit-button:hover input {
     color: white;
 }
-
-
-
-
 
 /* ------------------------------- */
 
