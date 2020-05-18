@@ -8,17 +8,17 @@ const loadShopProducts = () => {
 
             products.forEach(product => {
                 if (product.visibility) {
-                    priceKeys = Object.keys(product.prices)
+                    priceKeys = Object.keys(product.prices);
                     $(".shop-grid .row").append(
                         `
                     <a class="shop-product col-sm-6 col-md-4 col-lg-4" href="./product.html#${product.code}" data-product-category="${product.category}" data-product-sizes="${priceKeys}" data-product-price="${product.prices[priceKeys[0]]}"
                     ">
-                        <img class="shop-product-image" src="./assets/images/products/t1.png " alt="">
+                        <img class="shop-product-image" src="${product.productThumbnailUrl}" alt="">
                         <h5 class="shop-product-name">
                             ${product.name}
                         </h5>
                         <p class="shop-product-price">
-                            R ${product.prices[priceKeys[0]]} - R ${product.prices[priceKeys[priceKeys.length-1]]}
+                            R ${priceKeys.length > 1 ? product.prices[priceKeys[0]] + " - R" + product.prices[priceKeys[priceKeys.length-1]] : product.prices[priceKeys[0]]}
                         </p>
                     </a>
                 `
@@ -56,6 +56,7 @@ const loadProduct = () => {
                 $(".product-info .product-category").html(product.category)
                 $(".product-info .product-name").html(product.name)
                 $(".product-info .product-description").html(product.description);
+                $(".product-image img").attr("src", product.productImageUrls[0]);
 
                 // Prices
                 priceKeys = Object.keys(product.prices)
