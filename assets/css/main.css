@@ -1930,6 +1930,17 @@ input[type=number] {
     color: white;
 }
 
+
+#first-round {
+    border-top-left-radius: 20px;
+    border-top: var(--shop-border);
+}
+
+#second-round {
+    border-top-right-radius: 20px;
+    border-top: var(--shop-border);
+}
+
 /* ------------------------------- */
 
 
