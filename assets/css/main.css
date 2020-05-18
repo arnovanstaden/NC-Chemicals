@@ -1379,6 +1379,12 @@ input[type=range]::-webkit-slider-thumb::before {
     margin: 0 1rem;
 }
 
+.product-info small {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--medium-grey);
+    margin-bottom: 0.5rem;
+}
 
 /* ----------------------------------- */
 

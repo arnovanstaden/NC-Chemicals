@@ -200,4 +200,25 @@
     .notify-cart-inner div button:first-child {
         margin-bottom: 1rem;
     }
+
+    .product-container {
+        padding-top: 0;
+    }
+
+    .product-info {
+        padding: 1rem 2rem;
+    }
+
+    .product-add-cart {
+        flex-direction: column;
+    }
+
+    .product-add-cart .product-quant {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .product-sizes span {
+        font-size: 1.1rem;
+    }
 }
