@@ -1861,7 +1861,7 @@ input[type=number] {
 }
 
 .contact-info a {
-    color: var(--medium-grey);
+    color: var(--medium-grey) !important;
     text-decoration: none;
     font-size: 0.85rem;
     transition: 0.3s ease;
@@ -1881,16 +1881,16 @@ input[type=number] {
 }
 
 .contact-info>.row:nth-child(2) div:nth-child(1) {
-    border-right: var(--shop-border) !important;
-    border-bottom: var(--shop-border) !important;
+    border-right: var(--shop-border);
+    border-bottom: var(--shop-border);
 }
 
 .contact-info>.row:nth-child(2) div:nth-child(2) {
-    border-bottom: var(--shop-border) !important;
+    border-bottom: var(--shop-border);
 }
 
 .contact-info>.row:nth-child(2) div:nth-child(3) {
-    border-right: var(--shop-border) !important;
+    border-right: var(--shop-border);
 }
 
 .contact-form {
