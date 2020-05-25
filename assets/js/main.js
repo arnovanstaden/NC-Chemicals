@@ -320,7 +320,7 @@ $("footer").html(
                     <p>NC Chemicals is an industry leader in the production of high-quality industrial, household &
                         automotive chemical products.
                     </p>
-                    <span>© Copryright 2020 - NC Chemicals (PTY) LTD.</span>
+                    <span>© Copryright 2020 - NC Chemicals Group (PTY) LTD.</span>
                     <span>Design & Developed by <a target="blank"
                             href="http://www.webdacity.co.za/">Webdacity</a></span>
                 </div>

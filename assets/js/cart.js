@@ -236,7 +236,6 @@ const checkIfItemInCart = (product) => {
             inCart = true
         }
     });
-
     return inCart
 }
 
