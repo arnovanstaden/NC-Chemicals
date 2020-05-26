@@ -149,8 +149,8 @@ const calculateCartTotal = () => {
     }
     cartTotal += deliveryFee;
     $(".cart-checkout-subtotal span").html(cartTotal);
-    $(".cart-checkout-vat span").html(cartTotal * 0.15);
-    $(".cart-checkout-total span").html(cartTotal * 1.15);
+    $(".cart-checkout-vat span").html(Math.round(cartTotal * 0.15));
+    $(".cart-checkout-total span").html(Math.round(cartTotal * 1.15));
 }
 
 // Delete Cart
@@ -292,7 +292,7 @@ const loadCart = () => {
                                 <p> ${currentCart[count-1].size} </p>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-6  cart-item-price">
-                                    <p>R <span>${product.prices[currentCart[count-1].size]}</span>.00</p>
+                                    <p>R <span>${product.prices[currentCart[count-1].size]}</span></p>
                                 </div>
                                 <div class="col-md-3 col-sm-4 col-6 cart-item-quant">
                                     <div class="product-quant">
@@ -302,7 +302,7 @@ const loadCart = () => {
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-12 cart-item-total">
-                                    <p>R <span>${product.prices[currentCart[count-1].size] * currentCart[count-1].quantity}</span>.00</p>
+                                    <p>R <span>${product.prices[currentCart[count-1].size] * currentCart[count-1].quantity}</span></p>
                                 </div>
                                 <div class="col-md-1 cart-item-remove">
                                     <i class="fal fa-times"></i>
@@ -329,19 +329,51 @@ const loadCart = () => {
 
 
 const sendPayment = () => {
-    const deliveryAddress =
+    $(".loader").fadeIn();
+
+
+    deliveryAddress =
         $("#shipping-form input[name='adress_1']").val() + "," +
         $("#shipping-form input[name='adress_2']").val() + ", " +
         $("#shipping-form input[name='city']").val() + ", " +
         $("#shipping-form input[name='postcode']").val();
 
-    $("#shipping-form input[name='item_description']").val(localStorage.getItem("cart"));
-    $("#shipping-form input[name='custom_str1']").val($("#shipping-form input[name='cell_number']").val());
-    $("#shipping-form input[name='custom_str2']").val(deliveryAddress);
-    $("#shipping-form input[name='custom_str3']").val($("#shipping-form textarea[name='delivery_notes']").val());
-    $("#shipping-form input[name='amount']").val(parseInt($(".cart-checkout-total span").html()));
-    $("#shipping-form input[name='merchant_id']").val("10016549");
-    $("#shipping-form input[name='merchant_key']").val("sxou1f0t4mr2c");
+    deliveryNotes = $(`#shipping-form textarea[name='delivery_notes']`).val();
+    amount = parseInt($(".cart-checkout-total span").html());
 
-    $("#shipping-form").submit();
+    $(`#shipping-form input[name='item_description']`).val(`${localStorage.getItem("cart")}`);
+    $(`#shipping-form input[name='merchant_id']`).val("10016549");
+    $(`#shipping-form input[name='merchant_key']`).val("sxou1f0t4mr2c");
+    $(`#shipping-form input[name='amount']`).val(amount);
+
+    const orderToSave = {
+        merchant_id: $(`#shipping-form input[name='merchant_id']`).val(),
+        email_address: $(`#shipping-form [name='email_address']`).val(),
+        name_first: $(`#shipping-form [name='name_first']`).val(),
+        name_last: $(`#shipping-form [name='name_last']`).val(),
+        delivery_address: deliveryAddress,
+        delivery_notes: deliveryNotes,
+        cell_number: $(`#shipping-form [name='cell_number']`).val(),
+        cart_items: JSON.parse(localStorage.getItem("cart")),
+        amount_gross: amount
+    }
+
+    console.log(orderToSave)
+
+    axios({
+            method: "post",
+            url: `http://localhost:3000/orders/confirmation`,
+            // url: `${api_url}/orders/confirmation`,
+            data: orderToSave
+        })
+        .then(response => {
+            if (response.status === 201) {
+                $(`#shipping-form input[name='custom_str1']`).val(response.data.order_number);
+                $(`#shipping-form`).submit();
+            } else {
+                notify("Error Processing your transaction. Please contact Support")
+            }
+        })
+        .catch(err => console.log(err));
+
 }
