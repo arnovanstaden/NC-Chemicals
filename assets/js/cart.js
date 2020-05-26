@@ -148,7 +148,9 @@ const calculateCartTotal = () => {
         cartTotal += parseInt($(`#cart-item-${i} .cart-item-total span`).html());
     }
     cartTotal += deliveryFee;
-    $(".cart-checkout-total span").html(cartTotal)
+    $(".cart-checkout-subtotal span").html(cartTotal);
+    $(".cart-checkout-vat span").html(cartTotal * 0.15);
+    $(".cart-checkout-total span").html(cartTotal * 1.15);
 }
 
 // Delete Cart
