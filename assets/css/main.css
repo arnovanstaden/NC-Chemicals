@@ -757,16 +757,15 @@ footer a:hover {
 }
 
 #about-img-1 {
-    background-image: url("../images/other/AdobeStock_182053504_Preview.jpeg");
+    background-image: url("../images/other/about1.jpg");
 }
 
 #about-img-2 {
-    background-image: url("../images/other/AdobeStock_212325280_Preview.jpeg");
-
+    background-image: url("../images/other/about2.jpg");
 }
 
 #about-img-3 {
-    background-image: url("../images/other/AdobeStock_328032245_Preview.jpeg");
+    background-image: url("../images/other/about3.jpg");
 }
 
 /* -------------------------------------- */
