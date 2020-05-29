@@ -83,7 +83,9 @@
             <p>What are you looking for?</p>
             <form>
                 <input type="text" placeholder="Type Here">
-                <button class="my-button">Search</button>
+                <button class="my-button">
+                    <a>Search</a>
+                </button>
             </form>
         </div>
     </div>
@@ -166,7 +168,7 @@
 
                 <div class="col-10 offset-1 cart-shipping-form">
                     <form id="shipping-form" autocomplete="off" class="needs-validation" novalidate
-                        action="https://sandbox.payfast.co.za/eng/process" method="POST">
+                        action="https://www.payfast.co.za/eng/process" method="POST">
                         <div class="row">
                             <div class="col-md-6 form-element">
                                 <label>First Name</label>
@@ -239,12 +241,10 @@
                                 <textarea type="text" name="delivery_notes" placeholder="Delivery Notes"></textarea>
                             </div>
                         </div>
-                        <input type="hidden" name="merchant_id" value="">
-                        <input type="hidden" name="merchant_key" value="">
+                        <input type="hidden" name="merchant_id">
+                        <input type="hidden" name="merchant_key">
                         <input type="hidden" name="return_url" value="https://www.ncchemicals.co.za/success.html">
                         <input type="hidden" name="cancel_url" value="https://www.ncchemicals.co.za/cart.html">
-                        <input type="hidden" name="notify_url"
-                            value="https://nc-chemicals-backend.herokuapp.com/orders">
                         <input type="hidden" name="item_name" value="NC Chemicals Cart">
                         <input type="hidden" name="item_description" value="NC Chemicals Cart">
                         <input type="hidden" name="amount" value="">
@@ -268,7 +268,9 @@
                     <h3>Almost There <span>Arno</span>...</h3>
                     <p>Click the button below to pay <span></span> securely through Payfast.</p>
                     <img src="./assets/images/logos/payfast.png" alt="">
-                    <button class="my-button" onclick="sendPayment()">Pay Now</button>
+                    <button class="my-button" onclick="sendPayment()">
+                        <a>Pay Now</a>
+                    </button>
                 </div>
 
                 <div class="col-md-12 cart-button cart-button-prev">
@@ -290,7 +292,6 @@
                     <i class="fal fa-store"></i>
                     Visit Shop
                 </a>
-
             </button>
         </div>
     </section>

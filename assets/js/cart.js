@@ -285,7 +285,7 @@ const loadCart = () => {
                             `
                             <div class="col-lg-10 col-md-12 offset-lg-1 cart-item" id="cart-item-${count}" data-product-code="${product.code}" data-product-size="${currentCart[count-1].size}">
                                 <div class="col-md-1  cart-item-image">
-                                <img src="${product.productThumbnailUrl}" class="img-fluid" alt="">
+                                <img src="./assets/images/products/${product.productImage}-Thumbnail.png" class="img-fluid" alt="">
                                 </div>
                                 <div class="col-md-4 col-lg-3 cart-item-name">
                                 <a target="blank" href="./product.html#${product.code}">${product.name}</a>
@@ -342,8 +342,8 @@ const sendPayment = () => {
     amount = parseInt($(".cart-checkout-total span").html());
 
     $(`#shipping-form input[name='item_description']`).val(`${localStorage.getItem("cart")}`);
-    $(`#shipping-form input[name='merchant_id']`).val("10016549");
-    $(`#shipping-form input[name='merchant_key']`).val("sxou1f0t4mr2c");
+    $(`#shipping-form input[name='merchant_id']`).val("15470808");
+    $(`#shipping-form input[name='merchant_key']`).val("vqnxo55sm9fet");
     $(`#shipping-form input[name='amount']`).val(amount);
 
     const orderToSave = {
@@ -362,8 +362,7 @@ const sendPayment = () => {
 
     axios({
             method: "post",
-            url: `http://localhost:3000/orders/confirmation`,
-            // url: `${api_url}/orders/confirmation`,
+            url: `${api_url}/orders/confirmation`,
             data: orderToSave
         })
         .then(response => {

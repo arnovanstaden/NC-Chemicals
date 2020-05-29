@@ -84,8 +84,9 @@
             <p>What are you looking for?</p>
             <form>
                 <input type="text" placeholder="Type Here">
-                <button class="my-button">Search</button>
-            </form>
+                <button class="my-button">
+                    <a>Search</a>
+                </button> </form>
         </div>
     </div>
 
@@ -143,15 +144,22 @@
         <img class="d-sm-none" src="./assets/images/other/info-1-mobile.jpg" alt="">
     </section>
 
-    <section class="home-products">
-        <div class="container-fluid justify-content-start">
-            <div class="row home-products-grid">
-                <div class="home-product-intro col-md-3 col-lg-3">
-                    <i class="fal fa-thumbs-up"></i>
-                    <h2>Popular Products</h2>
-                    <p>A collecton of our best selling products</p>
-                    <a href="./shop.html">
-                        More Products
+    <section class="section-home-info-blocks">
+        <div class="container">
+            <div class="row">
+                <div class="home-info-block col-md-5 offset-md-1">
+                    <i class="fal fa-shopping-cart"></i>
+                    <h2>Our Products</h2>
+                    <p>Brows all our range of chemical products</p>
+                    <a href="./shop.html">All Products
+                        <div><i class="far fa-angle-right"></i></div>
+                    </a>
+                </div>
+                <div class="home-info-block col-md-5">
+                    <i class="fal fa-shopping-cart"></i>
+                    <h2>Contact Us</h2>
+                    <p>Send us a message or get our contact details.</p>
+                    <a href="./contact.html">Contact Us
                         <div><i class="far fa-angle-right"></i></div>
                     </a>
                 </div>
@@ -164,6 +172,7 @@
     <!-- Loader -->
     <div class="loader">
         <div class="spinner">
+
         </div>
     </div>
 

@@ -64,7 +64,7 @@ const loadNavSearch = () => {
             const productName = $(`.shop-grid .shop-product:nth-child(${i}) .shop-product-name`).html().toLowerCase();
             // Load Results
             if (!productName.includes(searchTerm)) {
-                $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-search")
+                $(`.shop-grid .shop-product:nth-child(${i})`).addClass("filter-hide-search");
             } else {
                 resultsCount++
             }
@@ -367,3 +367,15 @@ $("footer").html(
             </div>
         </div>`
 )
+
+
+
+// Wake Server
+if (window.location.pathname === "/index.html" || window.location.pathname === "/") {
+    axios({
+            method: "get",
+            url: api_url
+        })
+        .then()
+        .catch(err => console.log(err))
+}
