@@ -192,6 +192,8 @@ const loadSortProducts = (products) => {
         }
     });
 }
+
+
 // FILTER
 
 // Filter Check Boxes
