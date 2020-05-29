@@ -104,7 +104,94 @@ $("#shop-settings-sort").click(() => {
     $("#shop-settings-sort-dropdown").toggleClass("open")
 });
 
+$("#shop-settings-sort-dropdown li").click(function () {
+    let method = $(this).attr("data-sort-method");
+    $("#shop-settings-sort-dropdown").toggleClass("open")
+    shopSort(method)
+})
 
+
+
+// Shop sorting
+
+const shopSort = (method) => {
+
+    // Create Array to Sort
+    let shopSize = $(".shop-grid .shop-product").length;
+    let productsToSort = []
+
+    for (let i = 1; i <= shopSize; i++) {
+        let product = {
+            code: $(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-code"),
+            price: parseInt($(`.shop-grid .shop-product:nth-child(${i})`).attr("data-product-price"))
+        }
+        productsToSort.push(product)
+    }
+
+    // Sort by Price Low to High
+    if (method === "Price-L-H") {
+        function compare(a, b) {
+            // Use toUpperCase() to ignore character casing
+            const priceA = a.price;
+            const priceB = b.price;
+
+            let comparison = 0;
+            if (priceA > priceB) {
+                comparison = 1;
+            } else if (priceA < priceB) {
+                comparison = -1;
+            }
+            return comparison;
+        }
+
+        productsToSort.sort(compare);
+        loadSortProducts(productsToSort)
+    }
+
+    if (method === "Price-H-L") {
+        function compare(a, b) {
+            // Use toUpperCase() to ignore character casing
+            const priceA = a.price;
+            const priceB = b.price;
+
+            let comparison = 0;
+            if (priceA > priceB) {
+                comparison = 1;
+            } else if (priceA < priceB) {
+                comparison = -1;
+            }
+            return comparison * -1;
+        }
+
+        productsToSort.sort(compare);
+        loadSortProducts(productsToSort)
+    }
+}
+
+const loadSortProducts = (products) => {
+    $(".shop-grid .row").empty();
+
+    products.forEach(productToFind => {
+        let product = globalProducts.find(product => product.code === productToFind.code);
+        if (product.visibility) {
+            priceKeys = Object.keys(product.prices);
+            $(".shop-grid .row").append(
+                `
+            <a class="shop-product col-sm-6 col-md-4 col-lg-4" href="./product.html#${product.code}" data-product-code="${product.code}" data-product-category="${product.category}" data-product-sizes="${priceKeys}" data-product-price="${product.prices[priceKeys[0]]}" 
+            ">
+                <img class="shop-product-image" src="./assets/images/products/${product.productImage}-Thumbnail.png" alt="">
+                <h5 class="shop-product-name">
+                    ${product.name}
+                </h5>
+                <p class="shop-product-price">
+                    R ${priceKeys.length > 1 ? product.prices[priceKeys[0]] + " - R" + product.prices[priceKeys[priceKeys.length-1]] : product.prices[priceKeys[0]]}
+                </p>
+            </a>
+        `
+            )
+        }
+    });
+}
 // FILTER
 
 // Filter Check Boxes
