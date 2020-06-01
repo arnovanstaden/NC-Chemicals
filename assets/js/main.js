@@ -466,5 +466,11 @@ if (window.location.pathname === "/index.html" || window.location.pathname === "
             url: api_url
         })
         .then()
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
+
+    window.onload = (event) => {
+        hideLoader()
+    }
 }
+
+// Load Home Page

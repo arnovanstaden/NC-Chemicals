@@ -82,34 +82,34 @@ const loadProduct = () => {
 
 
 // Load Home Products
-const loadHomeProducts = () => {
-    axios.get(`${api_url}/products`)
-        .then(response => {
-            products = response.data;
+// const loadHomeProducts = () => {
+//     axios.get(`${api_url}/products`)
+//         .then(response => {
+//             products = response.data;
 
-            products.forEach(product => {
-                priceKeys = Object.keys(product.prices)
-                if (product.home && product.visibility) {
-                    $(".home-products-grid").append(
-                        `
-                    <a class="shop-product col-sm-6 col-md-3 col-lg-3" href="./product.html#${product.code}" data-product-category="${product.category}" data-product-sizes="${priceKeys}" data-product-price="${product.prices[priceKeys[0]]}"
-                    ">
-                        <img class="shop-product-image" src="./assets/images/products/t1.png " alt="">
-                        <h5 class="shop-product-name">
-                            ${product.name}
-                        </h5>
-                        <p class="shop-product-price">
-                            R ${product.prices[priceKeys[0]]} - R ${product.prices[priceKeys[priceKeys.length-1]]}
-                        </p>
-                    </a>
-                `
-                    )
-                }
-            });
-            hideLoader();
-        })
-        .catch(err => console.log(err));
-}
+//             products.forEach(product => {
+//                 priceKeys = Object.keys(product.prices)
+//                 if (product.home && product.visibility) {
+//                     $(".home-products-grid").append(
+//                         `
+//                     <a class="shop-product col-sm-6 col-md-3 col-lg-3" href="./product.html#${product.code}" data-product-category="${product.category}" data-product-sizes="${priceKeys}" data-product-price="${product.prices[priceKeys[0]]}"
+//                     ">
+//                         <img class="shop-product-image" src="./assets/images/products/t1.png " alt="">
+//                         <h5 class="shop-product-name">
+//                             ${product.name}
+//                         </h5>
+//                         <p class="shop-product-price">
+//                             R ${product.prices[priceKeys[0]]} - R ${product.prices[priceKeys[priceKeys.length-1]]}
+//                         </p>
+//                     </a>
+//                 `
+//                     )
+//                 }
+//             });
+//             hideLoader();
+//         })
+//         .catch(err => console.log(err));
+// }
 
 
 
