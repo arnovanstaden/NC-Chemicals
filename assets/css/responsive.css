@@ -40,6 +40,13 @@
         display: block;
         text-align: right;
     }
+
+
+    /* HOME PAGE */
+
+    .section-clients .row img {
+        margin-bottom: 2rem;
+    }
 }
 
 @media screen and (max-width:768px) {
