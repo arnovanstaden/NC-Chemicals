@@ -646,6 +646,27 @@ footer a:hover {
     width: 100%;
 }
 
+/* Client Section */
+
+.section-clients {
+    text-align: center;
+}
+
+.section-clients h1 {
+    font-size: 2rem;
+    font-family: "Oswald";
+    margin-bottom: 2rem;
+}
+
+.section-clients .row {
+    justify-content: center;
+    align-items: center;
+}
+
+.section-clients .row img {
+    width: 60%;
+}
+
 
 /* Product Section */
 
